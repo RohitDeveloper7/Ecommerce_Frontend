@@ -1,0 +1,179 @@
+<section class="search block">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="card side__filter border-0">
+                    <div class="card-header bg-white  p-3 px-0 mx-3 text-start">
+                        <h6 class="text__title text-start">Categories</h6>
+                        <span><i class="pi pi-angle-left"></i> Random</span>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="price border-bottom mb-3 pb-3">
+                            <h4 class="text__title mb-3">Price</h4>
+                            <p-slider [(ngModel)]="rangeValues" [range]="true"></p-slider>
+
+                            <div class="row mt-4">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" placeholder="₹500 ">
+                                </div>
+                                <div class="col-2 m-auto">
+                                    <p>To</p>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" class="form-control" placeholder="₹1500 ">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="brand border-bottom mb-3 pb-3">
+                            <h4 class="text__title mb-3">Brand</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="dell">
+                                <label class="form-check-label" for="dell">
+                                    Dell
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="sansui">
+                                <label class="form-check-label" for="sansui">
+                                    Sansui
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="honor">
+                                <label class="form-check-label" for="honor">
+                                    Honor
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="samsung">
+                                <label class="form-check-label" for="samsung">
+                                    Samsung
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="apple">
+                                <label class="form-check-label" for="apple">
+                                    Apple
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="brand customer__rating border-bottom mb-3 pb-3">
+                            <h4 class="text__title mb-3">Customer rating</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="dell">
+                                <label class="form-check-label" for="dell">
+                                    <i class="pi pi-star-fill"></i> 4 or above
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="sansui">
+                                <label class="form-check-label" for="sansui">
+                                    <i class="pi pi-star-fill"></i> 3 or above
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="brand discount mb-3">
+                            <h4 class="text__title mb-3">Customer rating</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="dell">
+                                <label class="form-check-label" for="dell">
+                                    20% 0r more
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="sansui">
+                                <label class="form-check-label" for="sansui">
+                                    40% 0r more
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="honor">
+                                <label class="form-check-label" for="honor">
+                                    50% 0r more
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="samsung">
+                                <label class="form-check-label" for="samsung">
+                                    60% 0r more
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="apple">
+                                <label class="form-check-label" for="apple">
+                                    80% 0r more
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-5">
+                            <div class="card product__filter">
+                                <div class="card-body">
+                                    <p>Showing 1 - 20 of 30 results</p>
+
+                                    <div class="float-end">
+                                        <p>Sort by</p>
+                                        <select class="form-select">
+                                            <option selected>Default</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 product__items">
+                        <div class="row">
+                            <ng-container *ngFor="let products of products">
+                                <div class="col-sm-6 col-md-6 col-lg-3" (click)="goToDetails(products)">
+                                    <div class="card border-0">
+                                        <div class="card-header bg-white p-3">
+                                            <img [src]="products?.productImages[0]" class="img-fluid">
+                                            <i class="pi pi-shopping-cart"></i>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="white-space">{{products?.productName}}</h5>
+                                            <h4>{{products.discountPrice | currency : "INR"}}</h4>
+                                            <span>{{products.ProductPrice | currency : "INR"}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- pagination -->
+            <div class="col-12 my-5">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#"><i class="pi pi-chevron-left"></i></a></li>
+                        <div class="page1">
+                            <li class="page-item active"><a class="page-link1  text-decoration-none" href="#">1</a></li>
+                        </div>
+                        <div class="page1">
+                            <li class="page-item"><a class="page-link1 text-decoration-none" href="#">2</a></li>
+                        </div>
+                        <li class="page-item"><a class="page-link" href="#"><i class="pi pi-chevron-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

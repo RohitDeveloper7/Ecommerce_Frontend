@@ -1,0 +1,260 @@
+<section class="categories admin-style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <h4 class="mb-0"> <i class="pi pi-arrow-left me-1 btn-back cursor-pointer" (click)="navigateback()"></i>  Product Sub-Categories List</h4>
+                    </div>
+                    <!-- <div class="col-sm-12 ">
+                        <button class="btn btn-back btn-primary" (click)="navigateback()" >
+                            <i class="pi pi-arrow-left me-1"></i> 
+                        </button>
+                    </div> -->
+                </div>
+            </div>
+            <!-- accordion -->
+            <div class="col-12">
+                <div class="accordion border-0 my-4" id="subcategories_accordion">
+                    <div class="accordion-item border-0">
+                        <div id="addsubcategoryaccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#subcategories_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Add Product Sub-Category</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="addSubCategoryForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Category </label>
+                                                        <!-- (change)="getSubCategryId($event)" -->
+                                                        <select class="form-select" formControlName="category">
+                                                            <option disabled selected value="">Select Category</option>
+                                                            <!-- <option [value]="item.id + ',' + item.category_name" *ngFor="let item of product_categories">{{item.category_name}}</option> -->
+                                                            <option [value]="item.category_id" *ngFor="let item of product_categories">{{item.categoryName}}</option>
+                                                        </select>
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['category'].hasError('required') && addSubCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select Category Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Sub-Category </label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="SubCategory"
+                                                            placeholder="Enter subcategory name">
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['SubCategory'].hasError('required') && addSubCategoryForm.controls['SubCategory'].touched"
+                                                            class=" text-danger">
+                                                            *Please Enter Sub-Category Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Image</label><span
+                                                            class="text-danger">*</span>
+                                                        <input type="file" class="form-control" #imageInput
+                                                            (change)="handleFileInput($event)"
+                                                            placeholder="Enter category name" formControlName="image">
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['image'].hasError('required') && addSubCategoryForm.controls['image'].touched"
+                                                            class=" text-danger">
+                                                            *Please Upload Sub-Category Image
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" >Description</label>
+                                                        <p-editor
+                                                            [style]="{ height: '150px' }" formControlName="description"></p-editor>
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['description'].hasError('required') && addSubCategoryForm.controls['description'].touched"
+                                                            class=" text-danger">
+                                                            *Please Upload Category Image
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#addsubcategoryaccordion">Cancel</button>
+                                        <button class="btn btn-primary" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#addsubcategoryaccordion" (click)="addServiceCategory()"
+                                            [disabled]="addSubCategoryForm.invalid">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <div id="updatesubcategoryaccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#subcategories_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Update Product Sub-Category</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="updateSubCategoryForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Category </label>
+                                                        <!-- (change)="getSubCategryId($event)" -->
+                                                        <select class="form-select" formControlName="category">
+                                                            <option value="">Select Category</option>
+                                                            <!-- <option [value]="item.id + ',' + item.category_name" *ngFor="let item of product_categories">{{item.category_name}}</option> -->
+                                                            <option [value]="item.id" *ngFor="let item of product_categories">{{item.category_name}}</option>
+
+                                                        </select>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Sub-Category </label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="SubCategory"
+                                                            placeholder="Enter subcategory name">
+                                                        </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Image</label>
+                                                        <input type="file" class="form-control" #imageInput
+                                                            (change)="handleFileInput($event)"
+                                                            placeholder="Enter category name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" >Description</label>
+                                                        <p-editor
+                                                            [style]="{ height: '150px' }" formControlName="description"></p-editor>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#updatesubcategoryaccordion">Cancel</button>
+                                        <button class="btn btn-primary" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#updatesubcategoryaccordion" (click)="UpdateServiceCategory()">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main table -->
+            <div class="col-sm-12 ">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <p-table #dt3 [value]="product_Subcategories" [rows]="5"
+                        [paginator]="product_Subcategories.length > 5"
+                        [globalFilterFields]="['secondary_id','name','  description','category_name']" styleClass="p-datatable-gridlines"
+                        [tableStyle]="{'min-width': '50rem'}">
+                        <ng-template pTemplate="caption">
+
+                            <div class="flex">
+                                <span class="p-input-icon-left ml-auto border rounded">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt3.filterGlobal($any($event.target).value, 'contains')"
+                                        placeholder="Search keyword" />
+                                </span>
+
+                                <button class="btn btn-primary float-end  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#addsubcategoryaccordion">
+                                    <i class="pi pi-plus me-1"> </i>
+                                    Add Sub-Category
+                                </button>
+                            </div>
+                        </ng-template>
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">Sr No</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Category Name</th>
+                                <th class="text-center">Sub-Category Name</th>
+                                <th class="text-center">Sub-Category Id</th>
+                                <th class="text-start">Description</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr>
+                                <td class="text-center">{{ i + 1 }}</td>
+                                <td class="text-center">
+                                    <img [src]="product?.image" class="img-fluid cursor-pointer" width="50" alt=""  (click)="openFolder(product)">
+                                </td>
+                                <td class="text-center" (click)="openFolder(product)">{{product?.category.categoryName}}</td>
+                                <td class="text-center" (click)="openFolder(product)">{{product?.subCategoryName}}</td>
+                                <td class="text-center white-space" (click)="openFolder(product)">{{product?.subCategory_id}}
+                                    <i class="fas fa-copy  ms-2  cursor-pointer" (click)="navigateCopyClipboard(product?.secondary_id)"></i>
+                                </td>
+                                <!-- <td class="text-center" (click)="openFolder(product)">
+                                    <div [innerHTML]="product?.description"></div>
+                                </td> -->
+                                <td >
+                                    <div *ngIf="isDataAvailable()" [innerHTML]="isExpanded ? (product?.subDisc | titlecase): notMoreThan50Words(product?.subDisc) | titlecase "></div>
+                                    <span *ngIf="product?.subDisc.split(' ').length > 20">
+                                        <a class="cursor-pointer text-decoration-none icon"
+                                            (click)=" isExpanded = !isExpanded">{{
+                                            isExpanded ? 'show less...' : 'show more...' }}</a>
+                                    </span>
+                                    <!-- <div [innerHTML]="product?.description"></div> -->
+                                </td>
+                                <td class="text-center">
+                                    <i class="mx-1 pi pi-pencil cursor-pointer"
+                                        (click)="patchValue(product)" data-bs-toggle="collapse"
+                                        data-bs-target="#updatesubcategoryaccordion"></i>
+                                    <i class="mx-1 pi pi-trash cursor-pointer" (click)="Subcategory_id = product.id " data-bs-toggle="modal"
+                                        data-bs-target="#sub-categorydeletemodal"></i>
+                                </td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal delete-modal fade" id="sub-categorydeletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Delete Sub-Category</h5>
+                <button type="button" class="btn-close p-2 closebtnofArtist" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h5 class="fw-bold">
+                   Are you sure you want to Delete Sub-Category? 
+                </h5>
+            </div>
+            <div class="modal-footer text-end">
+                <button class="btn btn-secondary me-3" data-bs-dismiss="modal">No</button>
+                <button class="btn btn-primary" (click)="deleteSubCategory()" type="submit" data-bs-dismiss="modal" aria-label="Close">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<p-toast position="top-right"></p-toast>

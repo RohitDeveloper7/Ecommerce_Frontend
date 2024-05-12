@@ -1,0 +1,163 @@
+<section class="register">
+  <div class="container">
+    <div class="row justify-content-center">
+      <ng-container *ngIf="verification; else showOTP">
+        <div class="col-sm-12 col-md-8 col-lg-5">
+          <form [formGroup]="SignUpForm">
+            <div class="card border-0 mt-5">
+              <div class="card-header p-5 pb-0 border-0">
+                <h3 class="title-main">Register</h3>
+                <div class="title-main-dash"></div>
+              </div>
+
+              <div class="card-body p-5">
+                <div class="mb-3">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" formControlName="userName" class="form-control">
+                  <small
+                    *ngIf="SignUpForm.controls['userName'].hasError('required') && SignUpForm.controls['userName'].touched"
+                    class="error-msg text-danger">
+                    Please Enter Full Name*
+                  </small>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" formControlName="useremail">
+                  <!-- <div class="input-group">
+                  <span class="input-group-text border-0">
+                    <i class="pi pi-times text-danger" *ngIf="steps == 0"></i>
+                    <i class="pi pi-check text-success" *ngIf="steps >= 1"></i>
+                  </span>
+                </div> -->
+                  <small
+                    *ngIf="SignUpForm.controls['useremail'].hasError('required') && SignUpForm.controls['useremail'].touched"
+                    class="error-msg text-danger">
+                    Please Enter Email*
+                  </small>
+                  <small *ngIf="SignUpForm.controls['useremail'].errors?.['pattern']" class="error-msg text-danger">
+                    Please Enter a Valid Email Address*
+                  </small>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Mobile</label>
+                  <input type="tel" class="form-control" formControlName="userNumber" maxLength="10" minlength="10"
+                    (input)="onMobileNoInput($event)">
+                  <!-- <div class="input-group">
+                  <span class="input-group-text border-0">
+                    <i class="pi pi-times text-danger" *ngIf="steps == 1"></i>
+                    <i class="pi pi-check text-success" *ngIf="steps >= 2"></i>
+                  </span>
+                </div> -->
+                  <small
+                    *ngIf="SignUpForm.controls['userNumber'].hasError('required') && SignUpForm.controls['userNumber'].touched"
+                    class="error-msg text-danger">
+                    Please Enter Mobile Number*
+                  </small>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <div class="input-group">
+                    <input [type]="password" formControlName="userPassword" class="form-control">
+                    <span class="input-group-text border-0">
+                      <i class="pi pi-eye-slash cursor-pointer" *ngIf="password == 'password'"
+                        (click)="password = 'text'"></i>
+                      <i class="pi pi-eye cursor-pointer" *ngIf="password == 'text'"
+                        (click)="password = 'password'"></i>
+                    </span>
+                  </div>
+                  <small
+                    *ngIf="SignUpForm.controls['userPassword'].hasError('required') && SignUpForm.controls['userPassword'].touched"
+                    class="error-msg text-danger">
+                    Please Enter Password*
+                  </small>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Confirm Password</label>
+                  <div class="input-group">
+                    <input [type]="cnfpassword" formControlName="userConfirmPassword" class="form-control">
+                    <span class="input-group-text border-0">
+                      <i class="pi pi-eye-slash" *ngIf="cnfpassword == 'password'" (click)="cnfpassword = 'text'"></i>
+                      <i class="pi pi-eye" *ngIf="cnfpassword == 'text'" (click)="cnfpassword = 'password'"></i>
+                    </span>
+                  </div>
+                  <small
+                    *ngIf="SignUpForm.controls['userConfirmPassword'].hasError('required') && SignUpForm.controls['userConfirmPassword'].touched"
+                    class="error-msg text-danger">
+                    Please Confirm Password*
+                  </small>
+                  <small class="error-msg text-danger" *ngIf="SignUpForm.controls['userConfirmPassword'].value !== '' && 
+                   SignUpForm.controls['userPassword'].value !== '' && 
+                   SignUpForm.controls['userConfirmPassword'].value !== SignUpForm.controls['userPassword'].value && 
+                   SignUpForm.controls['userPassword'].touched">
+                    Password does not match with confirm password *
+                  </small>
+                </div>
+
+                <div class="mb-3 mt-5">
+                  <button type="submit" class="btn btn-primary w-100" [disabled]="SignUpForm.invalid"
+                    (click)="userRegistration();">Register</button>
+                </div>
+
+                <div class="mt-4 text-center">
+                  <p>Already have an account? <a href="javascript:void(0)" [routerLink]="['/auth/login']">Login</a></p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </ng-container>
+
+      <ng-template #showOTP>
+        <div class="col-sm-12 col-md-8 col-lg-5">
+          <form [formGroup]="emailVerification">
+            <div class="card border-0 mt-5">
+              <div class="card-header p-5 pb-0 border-0">
+                <h3 class="title-main">Email Verification</h3>
+                <div class="title-main-dash"></div>
+              </div>
+
+              <div class="card-body p-5">
+                <div class="mb-3 text-center">
+                  <label class="form-label mb-3">Enter OTP sent to your Email ID</label>
+
+                  <!-- <input type="number" class="form-control" formControlName="otp" maxlength="6"> -->
+                  <div class="otp-verify">
+                    <input type="text" class="form-control" placeholder="-" #otp1 name="otp1" maxlength="1"
+                      (keyup)="focus($event,'',otp1,otp2)" [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="verifyOtpDigit1">
+                    <input type="text" class="form-control" placeholder="-" #otp2 name="otp2" maxlength="1"
+                      (keyup)="focus($event,otp1,otp2,otp3)" [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="verifyOtpDigit2">
+                    <input type="text" class="form-control" placeholder="-" #otp3 name="otp3" maxlength="1"
+                      (keyup)="focus($event,otp2,otp3,otp4)" [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="verifyOtpDigit3">
+                    <input type="text" class="form-control" placeholder="-" #otp4 name="otp4" maxlength="1"
+                      (keyup)="focus($event,otp3,otp4,'')" [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="verifyOtpDigit4">
+                  </div>
+
+
+                  <p class="text-center mt-3">Reset OTP in <span class="icon">{{ formatTime(timer) }}</span></p>
+                  <small
+                    *ngIf="emailVerification.controls['otp'].hasError('required') && emailVerification.controls['otp'].touched"
+                    class="error-msg text-danger">
+                    Please Enter OTP sent to your Email*
+                  </small>
+                </div>
+
+                <div class="mb-3 mt-4">
+                  <button type="submit" class="btn btn-primary w-100" [disabled]="emailVerification.invalid"
+                    (click)="verifyEmail()">Verify OTP</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>

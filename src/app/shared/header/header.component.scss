@@ -1,0 +1,95 @@
+header {
+    .navbar {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        background: #fff;
+
+
+        .navbar-brand img {
+            height: 45px;
+        }
+        .mayur{
+            width: 100px;
+        }
+        .hope__dropdown {
+            position: relative;
+
+            .dropdown__card {
+                display: none;
+                padding: 5px 0;
+                border-radius: 10px;
+                position: absolute;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+
+                    li {
+                        padding: 10px 25px;
+
+                        &:hover {
+                            background-color: #ededed;
+                        }
+
+                        i {
+                            font-size: 18px;
+                        }
+
+                        a {
+                            font-size: 16px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+
+            &:hover>.dropdown__card {
+                display: block;
+            }
+        }
+
+        .nav-item {
+            .nav-link {
+                color: var(--secondary-color);
+                margin: 0px 10px;
+            }
+        }
+
+        .form-control {
+            border: none !important;
+            // width: 550px;
+            border-bottom: 1px solid var(--secondary-color) !important;
+            margin: auto 0px !important;
+            // background-color: #f8f9fa;
+            border-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            box-shadow: none !important;
+            font-size: 14px !important;
+            padding-left: 6px !important;
+        }
+
+        .input-group-text {
+            border: none !important;
+            border-bottom: none !important;
+            background-color: #fff !important;
+            border-bottom-right-radius: 0 !important;
+        }
+
+        .pi {
+            font-size: 20px;
+            vertical-align: top;
+        }
+
+        .cart_Icon{
+            .rounded-pill{
+                top: 15% !important;
+                left: 40% !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+<section class="dasboard">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h4>Dashboard</h4>
+            </div>
+            <div class="col-3">
+                <div class="card-count border">
+                    <p><i class="pi pi-chart-line me-3"></i> Total Sales</p>
+
+                    <h5 class="m-0">₹ 24,000 <span class="badge-success float-end"><i class="pi pi-arrow-up me-1"></i>
+                            20%</span></h5>
+
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card-count border">
+                    <p><i class="pi pi-chart-line me-3"></i> Total Sales</p>
+
+                    <h5 class="m-0">₹ 24,000 <span class="badge-loss float-end"><i class="pi pi-arrow-down me-1"></i>
+                            20%</span></h5>
+
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card-count border">
+                    <p><i class="pi pi-chart-line me-3"></i> Total Sales</p>
+
+                    <h5 class="m-0">₹ 24,000 <span class="badge-success float-end"><i class="pi pi-arrow-up me-1"></i>
+                            20%</span></h5>
+
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card-count border">
+                    <p><i class="pi pi-chart-line me-3"></i> Total Sales</p>
+
+                    <h5 class="m-0">₹ 24,000 <span class="badge-loss float-end"><i class="pi pi-arrow-down me-1"></i>
+                            20%</span></h5>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="graph">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h4>Statistics</h4>
+            </div>
+            <div class="col-6">
+                <div class="text-center">
+                    <p-chart type="bar" [data]="data" [options]="options"></p-chart>
+                    <h5 class="mb-3 mt-2 pt-2 border-top">Total Sales</h5>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-center">
+                    <p-chart type="bar" [data]="data" [options]="options"></p-chart>
+                    <h5 class="mb-3 mt-2 pt-2 border-top">Total Expenses</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

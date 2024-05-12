@@ -1,0 +1,47 @@
+.register {
+    min-height: 82vh;
+    display: flex;
+    align-items: center;
+
+    .card {
+        border-radius: 10px;
+        background-color: #EBEBEB;
+
+        .card-header {
+            border-radius: 10px 10px 0 0;
+            background-color: #EBEBEB;
+        }
+
+        .card-body {
+            p {
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            a {
+                color: #197BBD;
+            }
+
+            .input-group {
+                i {
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .otp-verify {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        justify-content: space-around;
+
+        input {
+            text-align: center;
+            width: 60px;
+            height: 60px;
+            margin: 2rem 0;
+        }
+    }
+}

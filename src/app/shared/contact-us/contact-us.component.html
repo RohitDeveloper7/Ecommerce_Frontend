@@ -1,0 +1,129 @@
+<section class="block contact__us_form">
+    <div class="container">
+        <div class="row">
+            <div class="col-7 my-auto">
+                <div class="row section__info">
+                    <div class="col-12 mb-3">
+                        <h3 class="title-main">Contact Us</h3>
+                        <div class="title-main-dash"></div>
+                    </div>
+                    <div class="col-6">
+                        <p>Email, call, or complete the form to learn how Snappy can solve your messaging problem.</p>
+                        <a href="javascript:void(0)">info@snappy.io</a>
+                        <a href="javascript:void(0)">+91 321-221-2311</a>
+                        <a href="javascript:void(0)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                            quaerat!</a>
+                    </div>
+                    <div class="col-12">
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <h5>Customer Support</h5>
+                                <p>Our support team is available around the clock to address any concerns or queries you
+                                    may
+                                    have.
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <h5>Feedback and Suggestions</h5>
+                                <p>We value your feedback and are continuously working to improve Snappy. Your input is
+                                    crucial
+                                    in
+                                    shaping the future of Snappy.</p>
+                            </div>
+                            <!-- <div class="col-4">
+                                <h5>Media Inquiries</h5>
+                                <p>For media-related questions or press inquiries, please contact us at
+                                    media@snappyapp.com.</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="card border-0 section__form_card">
+                    <div class="card-header border-0 p-4 pb-0">
+                        <h3 class="title-main">Get in Touch</h3>
+                        <div class="title-main-dash mb-2"></div>
+                        <p>You can reach us anytime</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <form [formGroup]="addContact">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input formControlName="name" type="text" class="form-control">
+                                        <small
+                                            *ngIf="addContact.controls['name'].hasError('required') && addContact.controls['name'].touched"
+                                            class="error-msg text-danger">
+                                            Please Enter Full Name*
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input formControlName="email" type="email" class="form-control">
+                                        <small
+                                            *ngIf="addContact.controls['email'].hasError('required') && addContact.controls['email'].touched"
+                                            class="error-msg text-danger">
+                                            Please Enter Email*
+                                        </small>
+                                        <small *ngIf="addContact.controls['email'].errors?.['pattern']"
+                                            class="error-msg text-danger">
+                                            Please Enter a Valid Email Address*
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Mobile Number</label>
+                                        <input formControlName="mobile" maxlength="10" minlength="10" type="number"
+                                            class="form-control">
+                                        <small
+                                            *ngIf="addContact.controls['mobile'].hasError('required') && addContact.controls['mobile'].touched"
+                                            class="error-msg text-danger">
+                                            Please Enter Mobile Number*
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-4">
+                                        <label class="form-label">Messege</label>
+                                        <textarea formControlName="message" class="form-control" rows="4"></textarea>
+                                        <small
+                                            *ngIf="addContact.controls['message'].hasError('required') && addContact.controls['message'].touched"
+                                            class="error-msg text-danger">
+                                            Please Enter Messege*
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-primary w-75 mb-3" (click)="addUsersContact()"
+                                        [disabled]="addContact.invalid">Submit</button>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <p>By contacting us, you agree to our <a href="javascript:void(0)">Terms of
+                                            service</a>
+                                        and <a href="javascript:void(0)">Privacy Policy</a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container-fluid p-0">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120652.60927224589!2d72.90951027719727!3d19.090361982567295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1708589593908!5m2!1sen!2sin"
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+
+<p-toast position="top-right"></p-toast>

@@ -1,0 +1,108 @@
+<section class="cart__page block">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h4 class="title-main">Your cart items</h4>
+                <div class="title-main-dash"></div>
+            </div>
+            <div class="col-12 mb-5">
+                <div class="cart__table">
+                    <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="w-30">Product</th>
+                                <th class="text-center">Until Price</th>
+                                <th class="text-center">Qty</th>
+                                <th class="text-center">Subtotal</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product>
+                            <tr>
+                                <td>
+                                    <div class="product__image d-flex flex-row">
+                                        <div class="image me-3">
+                                            <img [src]="product.productImages[0]" width="50" alt="" class="img-fluid">
+                                        </div>
+                                        <div class="my-auto">
+                                            <p class="m-0">{{product.productName }} </p>
+                                            <span>{{ product.category_id }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <p>{{ product.ProductPrice }}</p>
+                                </td>
+                                <td class="text-center">
+                                    <p>{{ product.productQuantity }}</p>
+                                </td>
+                                <td class="text-center">
+                                    <p>{{ product?.ProductPrice * product.productQuantity }}</p>
+                                </td>
+                                <td class="text-center">
+                                    <div class="action__delete" (click)="removeFromCart(product.product_id)">
+                                        <i class="pi pi-times"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+            <!-- <div class="col-8 coupon__details">
+                <button class="btn btn-secondary me-3 mb-3">
+                    Continue shopping
+                </button>
+                <button class="btn btn-secondary me-3 mb-3">
+                    Update Cart
+                </button> <br>
+                <button class="btn btn-primary me-3">
+                    Coupon code
+                </button>
+                <button class="btn btn-primary">
+                    Apply coupon
+                </button>
+            </div> -->
+
+            <div class="col-4 offset-8">
+                <div class="card payment__details border-0">
+                    <div class="card-header border-0 p-4 pb-0">
+                        <h4 class="m-0">Cart Total</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row mb-3 border-bottom">
+                            <div class="col-7">
+                                <h4>Subtotal</h4>
+                            </div>
+                            <div class="col-5 text-end">
+                                <p>₹15000</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3 border-bottom">
+                            <div class="col-7">
+                                <h4>Shipping</h4>
+                            </div>
+                            <div class="col-5 text-end">
+                                <p>₹150</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3 final__total">
+                            <div class="col-7">
+                                <h4>Grand Total</h4>
+                            </div>
+                            <div class="col-5 text-end">
+                                <p>₹15150</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer border-0 p-4 pt-0 text-center">
+                        <button class="btn btn-primary" [routerLink]="['/cart/checkout']">
+                            Final Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,280 @@
+<section class="contact-us admin-style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <h4 class="mb-0">Fresh deals</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- accordion -->
+            <div class="col-12">
+                <div class="accordion border-0 my-4" id="subcategories_accordion">
+                    <div class="accordion-item border-0">
+                        <div id="addsubcategoryaccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#subcategories_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Add Product Subcategory</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="addSubCategoryForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Category </label>
+                                                        <select class="form-select" formControlName="category"
+                                                            (change)="getCategryId($event)">
+                                                            <option selected disabled value="">Select Category</option>
+                                                            <option value={{Category.category_id}}
+                                                                *ngFor="let Category of categories">
+                                                                {{Category.categoryName}}
+                                                            </option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['category'].hasError('required') && addSubCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select Category Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">SubCategory</label>
+                                                        <select class="form-select" formControlName="SubCategory" (change)="getprodcutbysubId($event)">
+                                                            <option selected disabled value="">Select SubCategory</option>
+                                                            <option value={{SubCategory.subCategory_id}}
+                                                                *ngFor="let SubCategory of subcategories">
+                                                                {{SubCategory.subCategoryName}}
+                                                            </option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['category'].hasError('required') && addSubCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select Category Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Products</label>
+                                                        <select class="form-select" formControlName="product">
+                                                            <option selected disabled value="">Select product</option>
+                                                            <option value={{data.product_id}}
+                                                                *ngFor="let data of products">
+                                                                {{data.productName}}
+                                                            </option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="updateSubCategoryForm.controls['product'].hasError('required') && updateSubCategoryForm.controls['product'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select product Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                               
+                                                <!-- <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label ms-2">Description</label>
+                                                    <input type="text" class="form-control" placeholder="Description">
+                                                </div>
+                                            </div> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit" data-bs-toggle="collapse"
+                                        data-bs-target="#addsubcategoryaccordion">Cancel</button>
+                                        <button class="btn btn-primary" type="submit"
+                                            [disabled]="addSubCategoryForm.invalid" (click)="addFreshDeal()" >Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <div id="updatesubcategoryaccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#subcategories_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Update Product Subcategory</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="updateSubCategoryForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Category </label>
+                                                        <select class="form-select" formControlName="category"
+                                                            (change)="getCategryId($event)">
+                                                            <option selected disabled value="">Select Category</option>
+                                                            <option value={{Category.category_id}}
+                                                                *ngFor="let Category of categories">
+                                                                {{Category.categoryName}}
+                                                            </option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="updateSubCategoryForm.controls['category'].hasError('required') && updateSubCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select Category Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">SubCategory</label>
+                                                        <select class="form-select" formControlName="SubCategory" (change)="getprodcutbysubId($event)">
+                                                            <option selected disabled value="">Select SubCategory</option>
+                                                            <option value={{SubCategory.subCategory_id}}
+                                                                *ngFor="let SubCategory of subcategories">
+                                                                {{SubCategory.subCategoryName}}
+                                                            </option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="updateSubCategoryForm.controls['category'].hasError('required') && updateSubCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select Category Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Products</label>
+                                                        <select class="form-select" formControlName="product">
+                                                            <option selected disabled value="">Select product</option>
+                                                            <option value={{data.product_id}}
+                                                                *ngFor="let data of products">
+                                                                {{data.productName}}
+                                                            </option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="updateSubCategoryForm.controls['product'].hasError('required') && updateSubCategoryForm.controls['product'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select product Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label ms-2">Description</label>
+                                                    <input type="text" class="form-control" placeholder="Description">
+                                                </div>
+                                            </div> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit" data-bs-toggle="collapse"
+                                        data-bs-target="#updatesubcategoryaccordion">Cancel</button>
+                                        <button class="btn btn-primary" type="submit" 
+                                            [disabled]="updateSubCategoryForm.invalid" (click)="updateFreshDeal()" >Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main table -->
+            <div class="col-sm-12 ">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <p-table #dt3 [value]="freshDeal" [rows]="5" [paginator]="freshDeal.length > 5"
+                            [globalFilterFields]="['categories','name']" styleClass="p-datatable-gridlines"
+                            [tableStyle]="{'min-width': '50rem'}">
+                            <ng-template pTemplate="caption">
+                                <div class="flex">
+                                    <span class="p-input-icon-left ml-auto border rounded">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text"
+                                            (input)="dt3.filterGlobal($any($event.target).value, 'contains')"
+                                            placeholder="Search keyword" />
+                                    </span>
+                                    <button class="btn btn-primary float-end  " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#addsubcategoryaccordion">
+                                        <i class="pi pi-plus me-1"> </i>
+                                        Add Fresh Deals
+                                    </button>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="text-center">S No</th>
+                                    <th class="text-center">Product Name</th>
+                                    <th class="text-center">Product Price</th>
+                                    <th class="text-center">Discount Price</th>
+                                    <th class="text-center">Product Images</th>
+                                    <th class="text-center">Product Description</th>
+                                    <th class="text-center">Product Quantity</th>
+                                    <th class="text-center">Avaliability</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-freshDeal let-i="rowIndex">
+                                <tr>
+                                    <td class="text-center">{{ i + 1 }}</td>
+                                    <!-- <td class="text-center">
+                                        <img src="{{freshDeal?.image}}" class="img-fluid"
+                                            width="50" alt="">
+                                        </td> -->
+                                    <td class="text-center">{{freshDeal?.productName}}</td>
+                                    <td class="text-center">{{freshDeal?.ProductPrice}}</td>
+                                    <td class="text-center">{{freshDeal?.discountPrice}}</td>
+                                    <td class="text-center">{{freshDeal?.productImages}}</td>
+                                    <td class="text-center" [innerHTML]="freshDeal?.ProductPrice"></td>
+                                    <td class="text-center">{{freshDeal?.productQuantity}}</td>
+                                    <td class="text-center">{{freshDeal?.avaliability}}</td>
+                                    <td class="text-center">
+                                        <i class="mx-1 pi pi-pencil cursor-pointer" data-bs-toggle="collapse"
+                                            data-bs-target="#updatesubcategoryaccordion" (click)="patchValue(freshDeal);fdealId=freshDeal.fdealId" ></i>
+                                        <i class="mx-1 pi pi-trash cursor-pointer" data-bs-toggle="modal"
+                                            data-bs-target="#categorydeletemodal" (click)="fdealId=freshDeal.fdealId" ></i>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<p-toast position="top-right"></p-toast>
+
+<!-- Categoruy  delete model-->
+<div class="modal delete-modal fade" id="categorydeletemodal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="m-0">Delete Category</h5>
+                <button type="button" class="btn-close p-2 closebtnofArtist" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h5 class="fw-bold m-0">
+                    Are you sure you want to Delete category?
+                </h5>
+            </div>
+            <div class="modal-footer text-end border-0">
+                <button class="btn btn-secondary me-3" data-bs-dismiss="modal">No</button>
+                <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" aria-label="Close" (click)="deleteFreshDeal()" >Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

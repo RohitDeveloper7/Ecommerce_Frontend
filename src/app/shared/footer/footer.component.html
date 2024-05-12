@@ -1,0 +1,72 @@
+<footer class="footer">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="arrow__up" (click)="scrollToTop()">
+                    <img src="assets/images/footer__svg.png" alt="img text" class="img-fluid">
+                    <i class="pi pi-arrow-up"></i>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-5 main__space">
+                <img src="assets/logos/dark-logo.png" height="70" alt="main log hope" class="img-fluid mb-4 logo">
+
+                <div class="footer-text text-light">
+                    <p class="w-75">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti commodi odit
+                        voluptatum
+                        dignissimos nostrum fugit ad eaque ab quia alias iusto sed nisi asperiores quod non culpa,
+                        corporis obcaecati fuga?</p>
+                    <div class="social">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-3 main__space other__links">
+                <h4> Other Links</h4>
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" [ngClass]="activeTab == 'about-us'?'active':''" (click)="navigateTo('about-us')">About Us</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" [ngClass]="activeTab == 'contact-us'?'active':''" (click)="navigateTo('contact-us')">Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" [ngClass]="activeTab == 'terms-conditions'?'active':''" (click)="navigateTo('terms-conditions')">Terms & Conditions</a>
+                    </li>  
+                    <li>
+                        <a href="javascript:void(0)" [ngClass]="activeTab == 'privacy-policy'?'active':''" (click)="navigateTo('privacy-policy')">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" [ngClass]="activeTab == 'refund-policy'?'active':''" (click)="navigateTo('refund-policy')">Refund Policy</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-12 col-md-4 main__space">
+                <form>
+                    <div class="input-group mb-5">
+                        <input type="search" class="form-control" placeholder="Search....">
+                        <span class="input-group-text text-light border-bottom-0">
+                            <i class="pi pi-search"></i>
+                        </span>
+                    </div>
+                </form>
+                <div class="time text-light text-end mb-5">
+                    <p class="fw-light m-0 text-uppercase">Our Location</p>
+                    <p>869 General Village Apt. 645, Moorebury, USA </p>
+                </div>
+                <div class="phone-number text-light text-end">
+                    <p class="fw-light text-uppercase m-0">24/7 Hotline</p>
+                    <p>(+91) 000 000 0000</p>
+                </div>
+            </div>
+
+            <div class="col-12 text-light border-top text-center py-4">
+                <p class="m-0">Copyright {{ currentYear }} by HOPE - All right reserved</p>
+            </div>
+        </div>
+    </div>
+</footer>

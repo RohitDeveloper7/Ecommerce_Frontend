@@ -1,0 +1,24 @@
+// .admin_page {
+//     margin-top: 0 !important; 
+//     min-height: 100vh !important;
+//     width: 100% !important;
+// }
+
+.login {
+    background-color: #fafafa;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h4 {
+        font-size: 18px;
+        font-weight: 500 !important;
+        color: var(--secondary-color) !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border-radius: 8px;
+    }
+}

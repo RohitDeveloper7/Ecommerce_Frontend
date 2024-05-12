@@ -1,0 +1,35 @@
+.modal-body {
+  overflow-y: auto;
+  max-height: 400px; // Adjust max-height as needed
+}
+
+.image-container {
+  margin-bottom: 20px;
+}
+
+.productImageView {
+  .zoomimage {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+
+.product-upload-process {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+
+  .progress {
+    --bs-progress-bg: #dee2e6;
+    height: 2px !important;
+  }
+
+  .progress-bar {
+    background-color: #197BBD !important;
+    height: 2px !important;
+  }
+
+  button {
+    padding: 0 !important;
+  }
+}

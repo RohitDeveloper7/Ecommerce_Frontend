@@ -1,0 +1,27 @@
+<main *ngIf="onAdminPage()">
+    <div class="row m-0">
+        <div class="col-12 p-0" *ngIf="!onAdminLogin()">
+            <app-admin-header></app-admin-header>
+        </div>
+        <div class="col-2 p-0" *ngIf="!onAdminLogin()">
+            <app-admin-sidebar></app-admin-sidebar>
+        </div>
+        <div [ngClass]="!onAdminLogin()?'col-10 main':'col-12'">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</main>
+
+<main *ngIf="!onAdminPage()">
+    <div class="row m-0">
+        <div class="col-12 p-0">
+            <app-header></app-header>
+        </div>
+        <div class="col-12 p-0 main_page">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-12 p-0">
+            <app-footer></app-footer>
+        </div>
+    </div>
+</main>

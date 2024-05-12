@@ -1,0 +1,23 @@
+.dimensions_size {
+    .data-preview {
+        display: flex;
+        flex-direction: row;
+    }
+
+    input[type="color"] {
+        height: 49px;
+    }
+}
+
+.input-group {
+    .input-group-text {
+        border-radius: 10px 0 0 10px !important;
+        color: #197BBD;
+        font-weight: 600;
+    }
+
+    .form-control {
+        border-radius: 0 10px 10px 0 !important;
+        border-right: 1px solid #dee2e6 !important;
+    }
+}

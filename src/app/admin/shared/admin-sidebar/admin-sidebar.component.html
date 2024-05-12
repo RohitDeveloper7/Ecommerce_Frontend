@@ -1,0 +1,123 @@
+<nav class="admin-side-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="profile border-bottom text-center pb-2 mb-2">
+                    <img src="assets/images/admin-profile.png" class="img-fluid border shadow-sm rounded-circle mb-3"
+                        alt="">
+                    <h5>Admin</h5>
+                </div>
+
+                <ul class="p-0">
+                    <li class="dashboard action" [ngClass]="activeIndexVal == 100?'active':''"
+                        (click)="navigateTo('dashboard')">
+                        <a href="javascript:void(0)" class="text-center">
+                            <i class="pi pi-th-large me-2"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="p-0">
+                        <p-accordion class="w-full" [activeIndex]="activeIndexVal">
+                            <p-accordionTab>
+                                <ng-template pTemplate="header">
+                                    <div class="flex align-items-center">
+                                        <i class="pi pi-box me-2"></i>
+                                        <span class="vertical-align-middle">Products</span>
+                                    </div>
+                                </ng-template>
+
+                                <ng-template pTemplate="content">
+                                    <ol class="p-0">
+                                        <li class="sub-action" [ngClass]="activeTab == 'product/category'?'active':''"
+                                            (click)="navigateTo('product/category')"> <i
+                                                class="pi pi-chart-pie me-2"></i> Category</li>
+
+                                        <li class=" sub-action" [ngClass]="activeTab == 'product/sub-category'?'active':''"
+                                            (click)="navigateTo('product/sub-category')"> <i
+                                                class="pi pi-database me-2"></i> Sub Category</li>
+
+                                        <li class=" sub-action" [ngClass]="activeTab == 'product'?'active':''"
+                                            (click)="navigateTo('product')">
+                                            <i class="pi pi-cart-plus me-2"></i> Product
+                                        </li>
+                                    </ol>
+                                </ng-template>
+                            </p-accordionTab>
+
+                            <p-accordionTab>
+                                <ng-template pTemplate="header">
+                                    <div class="flex align-items-center">
+                                        <i class="pi pi-user me-2"></i>
+                                        <span class="vertical-align-middle">User</span>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="content">
+                                    <ol class="p-0">
+                                        <li class=" sub-action" [ngClass]="activeTab == 'user'?'active':''"
+                                            (click)="navigateTo('user')">
+                                            <i class="pi pi-users me-2"></i>User List
+                                        </li>
+
+                                        <li class=" sub-action" [ngClass]="activeTab == 'user/contact-us'?'active':''"
+                                            (click)="navigateTo('user/contact-us')"> <i class="pi pi-mobile me-2"></i>
+                                            Contact Us </li>
+                                    </ol>
+                                </ng-template>
+                            </p-accordionTab>
+
+                            <p-accordionTab>
+                                <ng-template pTemplate="header">
+                                    <div class="flex align-items-center">
+                                        <i class="pi pi-home me-2"></i>
+                                        <span class="vertical-align-middle">Home</span>
+                                    </div>
+                                </ng-template>  
+                                <ng-template pTemplate="content">
+                                    <ol class="p-0">
+                                        <li class=" sub-action" [ngClass]="activeTab == 'admin-home/fresh-deals'?'active':''"
+                                            (click)="navigateTo('admin-home/fresh-deals')"> <i class="pi pi-wallet me-2"></i>
+                                            Fresh Deals</li>
+                                        <li class=" sub-action" [ngClass]="activeTab == 'admin-home/our-recommends'?'active':''"
+                                            (click)="navigateTo('admin-home/our-recommends')"> <i class="pi pi-send me-2"></i>
+                                            Our Recommends</li>
+                                        <li class=" sub-action" [ngClass]="activeTab == 'admin-home/banner'?'active':''"
+                                            (click)="navigateTo('admin-home/banner')"> <i class="pi pi-image me-2"></i> Banner
+                                        </li>
+                                    </ol>
+                                </ng-template>
+                            </p-accordionTab>
+                        </p-accordion>
+                    </li>
+
+                    <li class="seller action" [ngClass]="activeIndexVal == 3?'active':''"
+                        (click)="navigateTo('seller')">
+                        <a href="javascript:void(0)" class="text-center">
+                            <i class="pi pi-cog me-2"></i>
+                            <span>Sellers</span>
+                        </a>
+                    </li>
+
+                    <li class="orders action" [ngClass]="activeIndexVal == 4?'active':''"
+                        (click)="navigateTo('orders')">
+                        <a href="javascript:void(0)" class="text-center">
+                            <i class="pi pi-shopping-cart me-2"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+
+                    <li class="auth/change-password action" [ngClass]="activeIndexVal == 5?'active':''"
+                        (click)="navigateTo('auth/change-password')">
+                        <a href="javascript:void(0)" class="text-center">
+                            <i class="pi pi-unlock me-2"></i>
+                            <span>Change Password</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<p-toast position="top-right"></p-toast>

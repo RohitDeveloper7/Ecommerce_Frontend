@@ -1,0 +1,146 @@
+.product__details {
+
+    .img__main {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border-radius: 10px;
+        height: 600px;
+
+        .card-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                object-fit: contain;
+                width: 400px;
+            }
+        }
+    }
+
+    .slider {
+
+        .slider__images {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            width: 70px;
+            height: 70px;
+            margin: 1rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        img {
+            width: 50px;
+        }
+    }
+
+    .side__details {
+        .about {
+            .availability {
+                font-size: 16px;
+                font-weight: 500;
+                color: #858585;
+
+                span {
+                    color: #197BBD;
+                    font-weight: 600;
+                }
+            }
+
+            .product__name {
+                font-size: 32px;
+                font-weight: 700;
+                color: #171e27;
+            }
+
+            .ratings {
+                a {
+                    color: #171e27;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 500;
+                    vertical-align: top;
+                }
+            }
+        }
+
+        .features {
+            p {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 0.25rem;
+            }
+
+            .details {
+                font-size: 16px;
+                font-weight: 500;
+                margin-bottom: 0.25rem;
+            }
+        }
+
+        .pricing {
+            margin: 1.5rem 0;
+
+            h4 {
+                font-size: 30px;
+                font-weight: 700;
+
+                span {
+                    text-decoration: line-through;
+                    font-size: 22px;
+                    font-weight: 500;
+                    color: #858585;
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+
+        .buttons {
+            button {
+                width: 185px;
+            }
+        }
+
+        .tags {
+            font-size: 18px;
+            font-weight: 500;
+
+            span {
+                color: #197BBD;
+            }
+        }
+
+
+    }
+
+    .reviews__section {
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #171E27;
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #171E27;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .rating__bar { 
+            .progress,
+            .progress-stacked {
+                --bs-progress-height: 0.5rem;
+            }
+        }
+        .progress__data{ 
+        }
+    }
+}

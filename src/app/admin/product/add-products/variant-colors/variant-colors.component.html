@@ -1,0 +1,74 @@
+<div class="dimensions_size">
+    <div class="mb-3">
+        <h4 class="title-main">Variation/colors</h4>
+        <div class="title-main-dash"></div>
+    </div>
+
+    <form [formGroup]="variationColor">
+        <div class="row mb-3">
+            <div class="col-3">
+                <label class="form-label">Color</label>
+                <input type="text" class="form-control" formControlName="input1" placeholder="eg. M, L, XL">
+            </div>
+
+            <div class="col-2">
+                <label class="form-label">Availability</label>
+                <div class="d-flex flex-row mt-2">
+                    <input type="radio" class="form-check-input" id="availabilityVariantYes" formControlName="radio"
+                        value="yes">
+                    <label class="form-check-label me-3" for="availabilityVariantYes">
+                        Yes
+                    </label>
+
+                    <input type="radio" class="form-check-input" formControlName="radio" id="availabilityNo" value="no">
+                    <label class="form-check-label" for="availabilityNo">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <label class="form-label">Quantity</label>
+                <input type="number" formControlName="fileText" class="form-control" placeholder="Enter Quantity">
+            </div>
+
+            <div class="col-2">
+                <label class="form-label">Pick Color</label>
+                <input type="color" id="colorPicker" class="form-control" formControlName="color"
+                    [(ngModel)]="colorPickerValue">
+            </div>
+
+            <div class="col-2 mt-auto">
+                <button type="submit" class="btn btn-primary w-100" [disabled]="variationColor.invalid"
+                    (click)="onColorSubmit()">Add</button>
+            </div>
+
+            <ng-container *ngFor="let previewItem of previewCclorData; let i = index">
+                <div class="data-preview my-3">
+                    <div class="input-group w-25 me-3">
+                        <span class="input-group-text">Color</span>
+                        <div class="form-control">{{ previewItem.input1 }}</div>
+                    </div>
+
+                    <div class="input-group w-25 me-3">
+                        <span class="input-group-text">Availability</span>
+                        <div class="form-control">{{ previewItem.radio }}</div>
+                    </div>
+
+                    <div class="input-group w-25 me-3">
+                        <span class="input-group-text">Quantity</span>
+                        <div class="form-control">{{ previewItem.fileText }}</div>
+                    </div>
+
+                    <div class="input-group w-25 me-3">
+                        <span class="input-group-text">Color</span>
+                        <div class="form-control">{{ previewItem.color }}</div>
+                    </div>
+
+                    <button (click)="deleteColorPreviewItem(i)" class="btn btn-primary"><i
+                            class="pi pi-trash"></i></button>
+                </div>
+            </ng-container>
+        </div>
+    </form> 
+</div> 

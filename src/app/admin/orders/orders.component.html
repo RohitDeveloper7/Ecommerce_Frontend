@@ -1,0 +1,211 @@
+<section class="contact-us admin-style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <h4 class="mb-0">Orders</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- accordion -->
+            <div class="col-12">
+                <div class="accordion border-0 my-4" id="orderlist_accordion">
+                    <div class="accordion-item border-0">
+                        <div id="addorderlistaccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#orderlist_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Add Product Subcategory</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="addSubCategoryForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Category </label>
+                                                        <select class="form-select" formControlName="category">
+                                                            <option selected value="">Select Category</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['category'].hasError('required') && addSubCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select Category Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Subcategory </label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="SubCategory"
+                                                            placeholder="Enter subcategory name">
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['SubCategory'].hasError('required') && addSubCategoryForm.controls['SubCategory'].touched"
+                                                            class=" text-danger">
+                                                            *Please Enter Subcategory Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label ms-2">Description</label>
+                                                    <input type="text" class="form-control" placeholder="Description">
+                                                </div>
+                                            </div> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit">Cancel</button>
+                                        <button class="btn btn-primary" type="submit"
+                                            [disabled]="addSubCategoryForm.invalid">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <div id="updateorderlistaccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#orderlist_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Update Product Subcategory</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="addSubCategoryForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Category </label>
+                                                        <select class="form-select" formControlName="category">
+                                                            <option selected value="">Select Category</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['category'].hasError('required') && addSubCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            *Please Select Category Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Subcategory </label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="SubCategory"
+                                                            placeholder="Enter subcategory name">
+                                                        <small
+                                                            *ngIf="addSubCategoryForm.controls['SubCategory'].hasError('required') && addSubCategoryForm.controls['SubCategory'].touched"
+                                                            class=" text-danger">
+                                                            *Please Enter Subcategory Name
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label ms-2">Description</label>
+                                                    <input type="text" class="form-control" placeholder="Description">
+                                                </div>
+                                            </div> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit">Cancel</button>
+                                        <button class="btn btn-primary" type="submit"
+                                            [disabled]="addSubCategoryForm.invalid">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main table -->
+            <div class="col-sm-12 ">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <p-table #dt3 [value]="categories" [rows]="5" [paginator]="categories.length > 5"
+                            [globalFilterFields]="['categories','name']" styleClass="p-datatable-gridlines"
+                            [tableStyle]="{'min-width': '50rem'}">
+                            <ng-template pTemplate="caption">
+                                <div class="flex">
+                                    <span class="p-input-icon-left ml-auto border rounded">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text"
+                                            (input)="dt3.filterGlobal($any($event.target).value, 'contains')"
+                                            placeholder="Search keyword" />
+                                    </span>
+                                    <button class="btn btn-primary float-end  " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#addorderlistaccordion">
+                                        <i class="pi pi-plus me-1"> </i>
+                                        Add Subcategory
+                                    </button>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="text-center">S No</th>
+                                    <th class="text-center">Category Name</th>
+                                    <th class="text-center"> Subcategory Name</th>
+                                    <!-- <th class="text-start">Description</th> -->
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-categories let-i="rowIndex">
+                                <tr>
+                                    <td class="text-center">{{ i + 1 }}</td>
+                                    <!-- <td class="text-center">
+                                        <img src="{{categories?.image}}" class="img-fluid"
+                                            width="50" alt="">
+                                        </td> -->
+                                    <td class="text-center">{{categories?.categorie}}</td>
+                                    <td class="text-center">{{categories?.name}}</td>
+                                    <td class="text-center">
+                                        <i class="mx-1 pi pi-pencil cursor-pointer" data-bs-toggle="collapse"
+                                            data-bs-target="#updateorderlistaccordion"></i>
+                                        <i class="mx-1 pi pi-trash cursor-pointer" data-bs-toggle="modal"
+                                            data-bs-target="#categorydeletemodal"></i>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Categoruy  delete model-->
+<div class="modal delete-modal fade" id="categorydeletemodal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="m-0">Delete Confirmation</h5>
+                <button type="button" class="btn-close p-2 closebtnofArtist" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h5 class="fw-bold m-0">
+                    Are you sure you want to Delete this Order?
+                </h5>
+            </div>
+            <div class="modal-footer text-end border-0">
+                <button class="btn btn-secondary me-3" data-bs-dismiss="modal">No</button>
+                <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" aria-label="Close">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

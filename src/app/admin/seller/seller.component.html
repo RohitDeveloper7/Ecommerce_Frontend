@@ -1,0 +1,154 @@
+<section class="seller admin-style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="m-0">Sellers</h4>
+            </div>
+            <div class="col-12">
+                <div class="accordion border-0 my-4" id="categories_accordion">
+                    <div class="accordion-item border-0">
+                        <div id="selleraccordain" class="accordion-collapse collapse  "
+                            data-bs-parent="#categories_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Update Seller</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="UpdateSellerForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Seller Name</label><span
+                                                            class="text-danger">*</span>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="sellerName"
+                                                            placeholder="Enter Seller name">
+                                                        <!-- <small
+                                                            *ngIf="addCategoryForm.controls['category_name'].hasError('required') && addCategoryForm.controls['category_name'].touched"
+                                                            class=" text-danger">
+                                                            *Please Enter Category Name
+                                                        </small> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Enter Seller Email</label><span
+                                                            class="text-danger">*</span>
+                                                            <input type="text" class="form-control"
+                                                            formControlName="sellerEmail"
+                                                            placeholder="Enter Seller Email">
+                                                        <!-- <small
+                                                            *ngIf="addCategoryForm.controls['image'].hasError('required') && addCategoryForm.controls['image'].touched"
+                                                            class=" text-danger">
+                                                            *Please Upload Category Image
+                                                        </small> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Enter Seller Number</label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="sellerNumber"
+                                                            placeholder="Enter Seller Number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#selleraccordain">Cancel</button>
+                                        <button class="btn btn-primary" type="submit"
+                                            [disabled]="UpdateSellerForm.invalid" data-bs-toggle="collapse"
+                                            data-bs-target="#selleraccordain"
+                                            (click)="UpdateSeller()">Update</button>
+                                    </div>
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <p-table #dt5 [value]="sellers" [rows]="5" [paginator]="sellers.length > 5"
+                            [globalFilterFields]="['sellers','name']" styleClass="p-datatable-gridlines"
+                            [tableStyle]="{'min-width': '50rem'}">
+                            <ng-template pTemplate="caption">
+
+                                <div class="flex">
+                                    <span class="p-input-icon-left ml-auto border rounded">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text"
+                                            (input)="dt5.filterGlobal($any($event.target).value, 'contains')"
+                                            placeholder="Search keyword" />
+                                    </span>
+
+                                    <!-- <button class="btn btn-primary float-end  " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#addsellerssaccordion">
+                                        <i class="pi pi-plus me-1"> </i>
+                                        Add sellerss
+                                    </button> -->
+                                </div>
+                            </ng-template>
+
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="text-center">S No</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Mobile No</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-sellers let-i="rowIndex">
+                                <tr>
+                                    <td class="text-center">{{ i + 1 }}</td>
+
+                                    <td class="text-center">{{sellers?.name}}</td>
+                                    <td class="text-center">{{sellers?.email}}</td>
+                                    <td class="text-center">{{sellers?.mobile}}</td>
+                                    <td class="text-center">
+                                        <i class="mx-1 pi pi-pencil cursor-pointer" data-bs-toggle="collapse"
+                                        data-bs-target="#selleraccordain" (click)="patchValue(sellers)"></i>
+                                        <i class="mx-1 pi pi-trash cursor-pointer" data-bs-toggle="modal"
+                                            data-bs-target="#sellerdeletemodal" (click)="patchValue(sellers)"></i>
+                                    </td>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categoruy  delete model-->
+<div class="modal fade" id="sellerdeletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Delete Category</h5>
+                <button type="button" class="btn-close p-2 closebtnofArtist" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h5>
+                    <b>Are you sure you want to Delete Seller?</b>
+                </h5>
+            </div>
+            <div class="modal-footer text-end">
+                <button class="btn btn-success" data-bs-dismiss="modal">No</button>
+                <button class="btn btn-danger" (click)="deleteSeller()" type="submit" data-bs-dismiss="modal" aria-label="Close">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<p-toast position="top-right"></p-toast>

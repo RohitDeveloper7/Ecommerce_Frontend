@@ -1,0 +1,61 @@
+<section class="login">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-8 col-lg-5">
+                <form [formGroup]="loginForm">
+                    <div class="card border-0">
+                        <div class="card-header p-5 pb-0 border-0">
+                            <h3 class="title-main">Login</h3>
+                            <div class="title-main-dash"></div>
+                        </div>
+                        <div class="card-body p-5">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" formControlName="useremail" autocomplete="email">
+                                <small
+                                    *ngIf="loginForm.controls['useremail'].hasError('required') && loginForm.controls['useremail'].touched"
+                                    class="text-danger error-msg">
+                                    Please Enter Email*
+                                </small>
+                                <small *ngIf="loginForm.controls['useremail'].errors?.['pattern']"
+                                    class="text-danger error-msg">
+                                    Please Enter a Valid Email Address*
+                                </small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <div class="input-group">
+                                    <input [type]="password" class="form-control" formControlName="userPassword" autocomplete="password">
+                                    <span class="input-group-text border-0">
+                                        <i class="pi pi-eye-slash" *ngIf="password == 'password'"
+                                            (click)="password = 'text'"></i>
+                                        <i class="pi pi-eye" *ngIf="password == 'text'"
+                                            (click)="password = 'password'"></i>
+                                    </span>
+                                </div>
+                                <small
+                                    *ngIf="loginForm.controls['userPassword'].hasError('required') && loginForm.controls['userPassword'].touched"
+                                    class="text-danger error-msg">
+                                    Please Enter Password*
+                                </small>
+                            </div>
+                            <div class="text-end">
+                                <a href="javascript:void(0)" [routerLink]="['/auth/forgot-password']">Forgot Password?</a>
+                            </div>
+                            <div class="mb-3 mt-5">
+                                <button type="submit" [disabled]="loginForm.invalid" (click)="userLogin()"
+                                    class="btn btn-primary w-100">Login</button>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <p>Don't have an account? <a href="javascript:void(0)" [routerLink]="['/auth/register']"
+                                        routerLinkActive="router-link-active">Register</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<p-toast position="top-right"></p-toast>

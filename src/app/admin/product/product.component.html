@@ -1,0 +1,439 @@
+<section class="products admin-style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <h4 class="mb-0">Product List</h4>
+                    </div>
+                    <div class="col-sm-12 ">
+                        <button class="btn btn-primary" (click)="navigateback()">
+                            <i class="pi pi-angle-left me-1"></i> Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- accordion -->
+            <div class="col-12">
+                <div class="accordion border-0 my-4" id="products_accordion">
+                    <div class="accordion-item border-0">
+                        <div id="addsubcategoryaccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#products_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Add Products </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="addProductCategoryForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Category </label>
+                                                        <select class="form-select" formControlName="category"
+                                                            (change)="getCategryId($event)">
+                                                            <option selected value="">Select Category</option>
+                                                            <option value={{Category.category_id}}
+                                                                *ngFor="let Category of product_categories">
+                                                                {{Category.categoryName}}
+                                                            </option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['category'].hasError('required') && addProductCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            Please Select Category Name*
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Subcategory </label>
+                                                        <select class="form-select" formControlName="subcategory"
+                                                            [disabled]="optionDisabled">
+                                                            <option selected value="">Select Subcategory</option>
+                                                            <option value={{Subcategory.subCategory_id}}
+                                                                *ngFor="let Subcategory of product_Subcategories">
+                                                                {{Subcategory.subCategoryName}}</option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['subcategory'].hasError('required') && addProductCategoryForm.controls['subcategory'].touched"
+                                                            class=" text-danger">
+                                                            Please Select Sub-Category Name*
+                                                        </small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Name </label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="productName"
+                                                            placeholder="Enter product name">
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['productName'].hasError('required') && addProductCategoryForm.controls['productName'].touched"
+                                                            class=" text-danger">
+                                                            Please Enter Product Name*
+                                                        </small>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label class="form-label">Price </label>
+                                                        <input type="number" class="form-control"
+                                                            formControlName="ProductPrice"
+                                                            placeholder="Enter product price" (input)="onInput($event)"
+                                                            (keydown)="onKeyDown($event)">
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['ProductPrice'].hasError('required') && addProductCategoryForm.controls['ProductPrice'].touched"
+                                                            class=" text-danger">
+                                                            Please Enter Product price*
+                                                        </small>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Dis. Price </label>
+                                                        <input type="number" class="form-control"
+                                                            formControlName="discountPrice"
+                                                            placeholder="Enter product discounted price"
+                                                            (input)="onInput($event)" (keydown)="onKeyDown($event)">
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['discountPrice'].hasError('required') && addProductCategoryForm.controls['discountPrice'].touched"
+                                                            class=" text-danger">
+                                                            Please Enter Discount price*
+                                                        </small>
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['discountPrice'].value! > addProductCategoryForm.controls['ProductPrice'].value! && 
+                                                            addProductCategoryForm.controls['discountPrice'].touched && 
+                                                            addProductCategoryForm.controls['discountPrice'].value !== ''"
+                                                            class="text-danger">
+                                                            Please enter a valid discount price*
+                                                        </small>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Qty </label>
+                                                        <input type="number" class="form-control"
+                                                            formControlName="productQuantity"
+                                                            placeholder="Enter product quantity"
+                                                            (input)="onInput($event)" (keydown)="onKeyDown($event)">
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['productQuantity'].hasError('required') && addProductCategoryForm.controls['productQuantity'].touched"
+                                                            class=" text-danger">
+                                                            Please Enter Product quantity*
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Image</label><span
+                                                            class="text-danger">*</span>
+                                                        <input type="file" class="form-control" #imageInput
+                                                            (change)="handleFileInput($event)" formControlName="image"
+                                                            placeholder="Enter category name" multiple="true">
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['image'].hasError('required') && addProductCategoryForm.controls['image'].touched"
+                                                            class=" text-danger">
+                                                            Please Upload Category Image*
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Avaliability</label>
+                                                        <select class="form-select" formControlName="avaliability">
+                                                            <option selected value="">Select Avaliability</option>
+                                                            <option value="yes">Yes</option>
+                                                            <option value="no">No</option>
+                                                        </select>
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['avaliability'].hasError('required') && addProductCategoryForm.controls['avaliability'].touched"
+                                                            class=" text-danger">
+                                                            Please Select Avaliability*
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-4">
+                                                    <div class="image-preview d-flex flex-row"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Description</label>
+                                                        <p-editor [(ngModel)]="text"
+                                                            formControlName="productDescription"
+                                                            [style]="{ height: '150px' }"></p-editor>
+                                                        <small
+                                                            *ngIf="addProductCategoryForm.controls['productDescription'].hasError('required') && addProductCategoryForm.controls['productDescription'].touched"
+                                                            class=" text-danger">
+                                                            Please Enter Product Description*
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#addsubcategoryaccordion">Cancel</button>
+                                        <button class="btn btn-primary" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#addsubcategoryaccordion"
+                                            (click)="addProductCategory()">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <div id="updatesubcategoryaccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#products_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Update Products </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="UpdateProductCategoryForm">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Category </label>
+                                                        <select class="form-select" formControlName="category"
+                                                            (change)="getCategryId($event)">
+                                                            <option selected value="">Select Category</option>
+                                                            <option value={{Category.id}}
+                                                                *ngFor="let Category of product_categories">
+                                                                {{Category.category_name}}
+                                                            </option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="UpdateProductCategoryForm.controls['category'].hasError('required') && UpdateProductCategoryForm.controls['category'].touched"
+                                                            class=" text-danger">
+                                                            Please Select Category Name*
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Subcategory </label>
+                                                        <select class="form-select" formControlName="subcategory">
+                                                            <option selected value="">Select Subcategory</option>
+                                                            <option value={{Subcategory.id}}
+                                                                *ngFor="let Subcategory of product_Subcategories">
+                                                                {{Subcategory.name}}</option>
+
+                                                        </select>
+                                                        <small
+                                                            *ngIf="UpdateProductCategoryForm.controls['subcategory'].hasError('required') && UpdateProductCategoryForm.controls['subcategory'].touched"
+                                                            class=" text-danger">
+                                                            Please Select Sub-Category Name*
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Image</label><span
+                                                            class="text-danger">*</span>
+                                                        <input type="file" class="form-control" #imageInput
+                                                            (change)="handleFileInput($event)" formControlName="image"
+                                                            placeholder="Enter category name" multiple="true">
+                                                        <small
+                                                            *ngIf="UpdateProductCategoryForm.controls['image'].hasError('required') && UpdateProductCategoryForm.controls['image'].touched"
+                                                            class=" text-danger">
+                                                            *Please Upload Category Image
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Name </label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="productName"
+                                                            placeholder="Enter product name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Price </label>
+                                                        <input type="number" class="form-control"
+                                                            formControlName="ProductPrice"
+                                                            placeholder="Enter product price" (input)="onInput($event)"
+                                                            (keydown)="onKeyDown($event)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Dis. Price </label>
+                                                        <input type="number" class="form-control"
+                                                            formControlName="discountPrice"
+                                                            placeholder="Enter product discounted price"
+                                                            (input)="onInput($event)" (keydown)="onKeyDown($event)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Qty </label>
+                                                        <input type="number" class="form-control"
+                                                            formControlName="productQuantity"
+                                                            placeholder="Enter product quantity"
+                                                            (input)="onInput($event)" (keydown)="onKeyDown($event)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Description</label>
+                                                        <p-editor [(ngModel)]="text"
+                                                            formControlName="productDescription"
+                                                            [style]="{ height: '150px' }"></p-editor>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#updatesubcategoryaccordion">Cancel</button>
+                                        <button class="btn btn-primary" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#updatesubcategoryaccordion"
+                                            (click)="UpdateProductCategory()">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- main table -->
+            <div class="col-sm-12 ">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <p-table #dt3 [value]="products" [rows]="5" [paginator]="products?.length > 5"
+                            [globalFilterFields]="['secondary_id','name','subcategory_name','category_name','description','discounted_price']"
+                            styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '50rem'}">
+                            <ng-template pTemplate="caption">
+
+                                <div class="flex">
+                                    <span class="p-input-icon-left ml-auto border rounded">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text"
+                                            (input)="dt3.filterGlobal($any($event.target).value, 'contains')"
+                                            placeholder="Search keyword" />
+                                    </span>
+
+                                    <button class="btn btn-primary float-end  " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#addsubcategoryaccordion">
+                                        <i class="pi pi-plus me-1"> </i>
+                                        Add Products
+                                    </button>
+                                </div>
+                            </ng-template>
+
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="text-center">S No</th>
+                                    <th class="text-center">Category Name</th>
+                                    <th class="text-center"> Subcategory Name</th>
+                                    <th class="text-center">Image</th>
+                                    <th class="text-center">Product Name</th>
+                                    <th class="text-center">Product Id</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Disc. Price</th>
+                                    <th class="text-center">Qty</th>
+                                    <th class="text-start">Description</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-products let-i="rowIndex">
+                                <tr>
+                                    <td class="text-center">{{ i + 1 }}</td>
+                                    <td class="text-center">{{products?.category_id}}</td>
+                                    <td class="text-center">{{products?.subCategory_id}}</td>
+                                    <td class="text-center">
+                                        <ng-container *ngFor="let image of products.productImages">    
+                                            <img [src]="image" class="w-50" alt="imageItem.image">
+                                        </ng-container>
+                                        <!-- <ng-container *ngIf="products?.images && products?.images.length > 0">
+                                            <div class="product_img_container">
+                                                <img [src]="products?.images[0].image" (click)="imageClick(0,products?.images[0].id)"
+                                                class="product_image mt-2 w-100"/>  
+                                            </div>
+                                        </ng-container>
+                                            <p-galleria class="productImageView"  [value]="productImages" [(visible)]="displayCustom"
+                                                [(activeIndex)]="activeIndex" [responsiveOptions]="responsiveOptions"
+                                                [containerStyle]="{ 'max-width': '850px' }" 
+                                                [circular]="true" [fullScreen]="true" [showItemNavigators]="true"
+                                                [showThumbnails]="false">
+                                                <ng-template pTemplate="item" let-item >
+                                                    <img [src]="item?.image" class="text-light zoomimage cursor-pointer" (dblclick)="zoomImage($event)"/>
+                                                </ng-template>
+                                            </p-galleria> -->
+                                    </td>
+                                    <!-- <td class="text-center"> <img [src]="products?.images?.image" class=" w-25" alt="products images"/></td>  -->
+                                    <td class="text-center">{{products?.productName}}</td>
+                                    <td class="text-center">{{products?.product_id}}
+                                        <i class="fas fa-copy cursor-pointer"
+                                            (click)="navigateCopyClipboard(products?.product_id)"></i>
+                                    </td>
+                                    <td class="text-center">{{products?.ProductPrice}}</td>
+                                    <td class="text-center">{{products?.discountPrice}}</td>
+                                    <td class="text-center">{{products?.productQuantity}}</td>
+                                    <!-- <td class="text-start">{{products?.description}}</td> -->
+                                    <td class="text-start">
+                                        <div *ngIf="isDataAvailable()" [innerHTML]=" isExpanded ? (products?.productDescription | titlecase) :
+                                                notMoreThan50Words(products?.productDescription) | titlecase ">
+                                        </div>
+                                        <span *ngIf="products?.productDescription?.split(' ').length > 20">
+                                            <a class="cursor-pointer text-decoration-none icon"
+                                                (click)=" isExpanded = !isExpanded">{{
+                                                isExpanded ? 'show less...' : 'show more...' }}</a>
+                                        </span>
+                                        <div class="text-danger" *ngIf="!isDataAvailable()">!!No data available</div>
+                                    </td>
+                                    <td class="text-center">
+                                        <i class="mx-1 pi pi-pencil cursor-pointer" (click)="patchValue(products)"
+                                            data-bs-toggle="collapse" data-bs-target="#updatesubcategoryaccordion"></i>
+                                        <i class="mx-1 pi pi-trash cursor-pointer" (click)="product_id=products.product_id"
+                                            data-bs-toggle="modal" data-bs-target="#categorydeletemodal"></i>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal delete-modal fade" id="categorydeletemodal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Delete Category</h5>
+                <button type="button" class="btn-close p-2 closebtnofArtist" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h5 class="fw-bold">
+                    Are you sure you want to Delete category?
+                </h5>
+            </div>
+            <div class="modal-footer text-end">
+                <button class="btn btn-secondary me-3" data-bs-dismiss="modal">No</button>
+                <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="deleteSubCategory()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<p-toast position="top-right"></p-toast>

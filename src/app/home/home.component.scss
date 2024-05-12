@@ -1,0 +1,289 @@
+// banner
+
+.banner {
+    background-color: rgb(144, 137, 137);
+    .carousel-item img {
+        height: 500px;
+        width: 500px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border-radius: 10px;
+        object-fit: contain;
+        object-position: right;
+    }
+
+    .carousel-inner {
+        border-radius: 10px;
+    }
+
+    .carousel-caption {
+        width: 100%;
+        text-align: left;
+        top: 25%;
+        left: 10%;
+
+        .offer_pill {
+            background-color: #197bbd;
+            color: #fff;
+            padding: 10px 10px;
+            font-size: 13px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 500;
+        }
+
+        .btn-banner {
+            background-color: #414141;
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px 35px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    .sub_banner_1 {
+        position: relative;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        img {
+            width: 100%;
+            height: 335px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .sub_banner_txt {
+            position: absolute;
+            top: 50%;
+            left: 6%;
+            transform: translateY(-50%);
+
+            h4 {
+                font-size: 16px;
+                color: #fff;
+            }
+
+            h2 {
+                font-size: 24px;
+                color: #fff;
+                font-weight: 600;
+            }
+
+            p {
+                color: #197bbd;
+                font-size: 26px;
+                font-weight: 600;
+                margin: 0;
+            }
+        }
+    }
+
+    /* Custom Styles for Carousel Controls */
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 0 10px;
+  background-color: black; /* White background */
+  border: none; /* Remove default button border */
+  outline: none; /* Remove button outline */
+  z-index: 999; /* Ensure controls are on top of other content */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none; /* Remove default Bootstrap icon */
+  font-size: 1.5rem; /* Adjust icon size if needed */
+}
+
+.carousel-control-prev {
+  left: 20px; /* Position the 'Previous' button on the left side */
+}
+
+.carousel-control-next {
+  right: 20px; /* Position the 'Next' button on the right side */
+}
+
+}
+
+
+:host ::ng-deep {
+    .product-item {
+        .product-item-content {
+            border: 1px solid var(--surface-d);
+            border-radius: 3px;
+            margin: .3rem;
+            text-align: center;
+            padding: 2rem 0;
+        }
+    
+        .product-image {
+            width: 50%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+        }
+    }
+}
+
+
+.top-catogeries {
+    .nav_header {
+        p {
+            text-align: end;
+            font-size: 18px;
+            color: #197bbd;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+    .cat__card {
+        z-index: 90;
+        position: relative;
+
+        img {
+            width: 250px;
+            height: 270px;
+            object-fit: cover;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 10px;
+        }
+
+        .cat__Name {
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            padding: 8px;
+            border-radius: 10px;
+            z-index: 94;
+            margin-top: -12px;
+            position: relative;
+            background: #fff;
+
+            p {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.white-space{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.our__recommendation {
+    .nav_header {
+        p {
+            cursor: pointer;
+            text-align: end;
+            font-size: 18px;
+            color: #197bbd;
+        }
+    }
+
+
+    .card {
+        border-radius: 10px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        cursor: pointer;
+
+        .card-header {
+            border-radius: 10px 10px 0 0;
+            border: none;
+            position: relative;
+            text-align: center;
+
+            .pi {
+                transition: 0.6s;
+                display: none;
+                cursor: pointer;
+                color: #197bbd;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                padding: 7px;
+                background: #fff;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                border-radius: 7px;
+                font-size: 14px;
+                transition: all .4s ease;
+
+                &:active {
+                    transform: scale(.9);
+                    transition: all .4s ease;
+                }
+            }
+
+            img {
+                height: 130px;
+                width: auto;
+                margin: 3rem 0 0;
+                object-fit: contain;
+            }
+        }
+
+        .card-body {
+
+            h5 {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+                margin-bottom: 1rem;
+            }
+
+            h4 {
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                color: #197bbd;
+                margin-bottom: 0;
+                
+            }
+            span {
+                text-align: center;
+                font-size: 12px;
+                font-weight: 500;
+                // margin-left: 0.5rem;
+                color: #858585;
+                display: block;
+                text-decoration: line-through;
+            }
+
+        }
+
+        &:hover .card-header .pi {
+            display: block;
+            transition: 0.6s;
+        }
+    }
+
+}
+
+.fresh__deals .nav_header {
+
+    h4 {
+        text-align: end;
+        font-size: 18px;
+        color: #171e27;
+        display: inline;
+    }
+
+    p {
+        cursor: pointer;
+        float: right;
+        display: inline;
+        text-align: end;
+        font-size: 18px;
+        color: #197bbd;
+    }
+}

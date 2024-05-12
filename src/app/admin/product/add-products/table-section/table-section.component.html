@@ -1,0 +1,87 @@
+<div class="card border-0">
+    <div class="card-body">
+        <p-table #dt3 [value]="products" [rows]="5" [paginator]="products?.length > 5"
+            [globalFilterFields]="['secondary_id','name','subcategory_name','category_name','description','discounted_price']"
+            styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="caption">
+
+                <div class="flex">
+                    <span class="p-input-icon-left ml-auto border rounded">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text"
+                            (input)="dt3.filterGlobal($any($event.target).value, 'contains')"
+                            placeholder="Search keyword" />
+                    </span> 
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">Sr No</th>
+                    <th class="text-center">Category Name</th>
+                    <th class="text-center"> Sub-Category Name</th>
+                    <th class="text-center">Image</th>
+                    <th class="text-center">Product Name</th>
+                    <th class="text-center">Product Id</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Disc. Price</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-start">Description</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-products let-i="rowIndex">
+                <tr>
+                    <td class="text-center">{{ i + 1 }}</td>
+                    <td class="text-center">{{products?.category_name}}</td>
+                    <td class="text-center">{{products?.subcategory_name}}</td>
+                    <td class="text-center"> 
+                        <ng-container *ngIf="products?.images && products?.images.length > 0">
+                            <div class="product_img_container">
+                                <img [src]="products?.images[0].image"
+                                    (click)="imageClick(0,products?.images[0].id)"
+                                    class="product_image mt-2 w-100" />
+                            </div>
+                        </ng-container>
+                        <p-galleria class="productImageView" [value]="productImages"
+                            [(visible)]="displayCustom" [(activeIndex)]="activeIndex"
+                            [responsiveOptions]="responsiveOptions"
+                            [containerStyle]="{ 'max-width': '850px' }" [circular]="true"
+                            [fullScreen]="true" [showItemNavigators]="true" [showThumbnails]="false">
+                            <ng-template pTemplate="item" let-item>
+                                <img [src]="item?.image" class="text-light zoomimage cursor-pointer"
+                                    (dblclick)="zoomImage($event)" />
+                            </ng-template>
+                        </p-galleria>
+                    </td> 
+                    <td class="text-center">{{products?.name}}</td>
+                    <td class="text-center white-space">{{products?.secondary_id}}
+                        <i class="fas fa-copy ms-2 cursor-pointer"
+                            (click)="navigateCopyClipboard(products?.secondary_id)"></i>
+                    </td>
+                    <td class="text-center">{{products?.price}}</td>
+                    <td class="text-center">{{products?.discounted_price}}</td>
+                    <td class="text-center">{{products?.available_quantity}}</td> 
+                    <td class="text-start">
+                        <div *ngIf="isDataAvailable()" [innerHTML]=" isExpanded ? (products?.description | titlecase) :
+                                notMoreThan50Words(products?.description) | titlecase ">
+                        </div>
+                        <span *ngIf="products?.description?.split(' ').length > 20">
+                            <a class="cursor-pointer text-decoration-none icon"
+                                (click)=" isExpanded = !isExpanded">{{
+                                isExpanded ? 'show less...' : 'show more...' }}</a>
+                        </span>
+                        <div class="text-danger" *ngIf="!isDataAvailable()">!!No data available</div>
+                    </td>
+                    <td class="text-center">
+                        <i class="mx-1 pi pi-pencil cursor-pointer"
+                            data-bs-toggle="collapse" data-bs-target="#updatesubcategoryaccordion"></i>
+                        <i class="mx-1 pi pi-trash cursor-pointer" (click)="product_id=products.id"
+                            data-bs-toggle="modal" data-bs-target="#categorydeletemodal"></i>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

@@ -1,0 +1,267 @@
+<section class="contact-us admin-style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <h4 class="mb-0">Banner</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- accordion -->
+            <div class="col-12">
+                <div class="accordion border-0 my-4" id="banner_accordion">
+                    <div class="accordion-item border-0">
+                        <div id="addbanneraccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#banner_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Add Banner</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="addBannerImage">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Title </label>
+                                                        <input type="text" class="form-control" formControlName="title"
+                                                            placeholder="Enter Title">
+                                                        <small
+                                                            *ngIf="addBannerImage.controls['title'].hasError('required') && addBannerImage.controls['title'].touched"
+                                                            class="text-danger">Title is required</small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Image </label>
+                                                        <input type="file" class="form-control" formControlName="banner_image"
+                                                            placeholder="Select Image " #imageInput
+                                                            (change)="handleFileInput($event)">
+                                                        <small
+                                                            *ngIf="addBannerImage.controls['banner_image'].hasError('required') && addBannerImage.controls['banner_image'].touched"
+                                                            class="text-danger">Image is required</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Type</label>
+                                                        <select class="form-select" formControlName="type"aria-label="Default select example">
+                                                            <option selected value="">Open this select menu</option>
+                                                            <option value="category">Category</option>
+                                                            <option value="subcategory">Subcategory</option>
+                                                            <option value="product">Product</option>
+                                                          </select>
+                                                          <small
+                                                            *ngIf="addBannerImage.controls['type'].hasError('required') && addBannerImage.controls['type'].touched"
+                                                            class="text-danger">type is required</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Enter Id</label>
+                                                        <input type="text" class="form-control" formControlName="id"
+                                                            placeholder="Enter Title">
+                                                        <small
+                                                            *ngIf="addBannerImage.controls['id'].hasError('required') && addBannerImage.controls['id'].touched"
+                                                            class="text-danger">Category id is required</small>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Description </label>
+                                                        <p-editor formControlName="description"
+                                                            [style]="{ height: '250px' }"></p-editor>
+                                                        <small
+                                                            *ngIx`f="addBannerImage.controls['description'].hasError('required') && addBannerImage.controls['description'].touched"
+                                                            class="text-danger">description is required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#addbanneraccordion">Cancel</button>
+                                        <button class="btn btn-primary" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#addbanneraccordion" (click)="addBannerData()">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <div id="updatebanneraccordion" class="accordion-collapse collapse  "
+                            data-bs-parent="#banner_accordion">
+                            <div class="accordion-body p-0">
+                                <div class="card border-0">
+                                    <div class="card-header mx-3 p-3 px-0">
+                                        <h5 class="m-0">Update Product Subcategory</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="updateBanner">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Title </label>
+                                                        <input type="text" class="form-control" formControlName="title"
+                                                            placeholder="Enter subcategory name">
+                                                        <small
+                                                            *ngIf="updateBanner.controls['title'].hasError('required') && updateBanner.controls['title'].touched"
+                                                            class="text-danger">Title is required</small>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Image </label>
+                                                        <input type="text" class="form-control" formControlName="image"
+                                                            placeholder="Enter subcategory name">
+                                                        <small
+                                                            *ngIf="updateBanner.controls['image'].hasError('required') && updateBanner.controls['image'].touched"
+                                                            class="text-danger">Image is required</small>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Type</label>
+                                                        <select class="form-select" formControlName="type" aria-label="Default select example">
+                                                            <option selected disabled>Open this select menu</option>
+                                                            <option value="category">Category</option>
+                                                            <option value="subcategory">Subcategory</option>
+                                                            <option value="product">Product</option>
+                                                          </select>
+                                                          <small
+                                                            *ngIf="updateBanner.controls['type'].hasError('required') && updateBanner.controls['type'].touched"
+                                                            class="text-danger">type is required</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Enter Id</label>
+                                                        <input type="text" class="form-control" formControlName="id"
+                                                            placeholder="Enter Title">
+                                                        <small
+                                                            *ngIf="updateBanner.controls['id'].hasError('required') && updateBanner.controls['id'].touched"
+                                                            class="text-danger">Category id is required</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <p-editor formControlName="description"
+                                                            [style]="{ height: '250px' }"></p-editor>
+                                                        <small
+                                                            *ngIf="updateBanner.controls['description'].hasError('required') && updateBanner.controls['description'].touched"
+                                                            class="text-danger">description is required</small>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-end mx-3 px-0 py-3">
+                                        <button class="btn btn-secondary me-3" type="submit" data-bs-toggle="collapse"
+                                            data-bs-target="#updatebanneraccordion">Cancel</button>
+                                        <button class="btn btn-primary" type="submit" [disabled]="updateBanner.invalid"
+                                            data-bs-toggle="collapse" data-bs-target="#updatebanneraccordion"
+                                            (click)="updateBannerData()">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- main table -->
+            <div class="col-sm-12 ">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <p-table #dt3 [value]="bannerDatas" [rows]="5" [paginator]="bannerDatas.length > 5"
+                            [globalFilterFields]="['bannerDatas','title']" styleClass="p-datatable-gridlines"
+                            [tableStyle]="{'min-width': '50rem'}">
+                            <ng-template pTemplate="caption">
+                                <div class="flex">
+                                    <span class="p-input-icon-left ml-auto border rounded">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text"
+                                            (input)="dt3.filterGlobal($any($event.target).value, 'contains')"
+                                            placeholder="Search keyword" />
+                                    </span>
+                                    <button class="btn btn-primary float-end  " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#addbanneraccordion">
+                                        <i class="pi pi-plus me-1"> </i>
+                                        Add Banner
+                                    </button>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="text-center">S No</th>
+                                    <th class="text-center">Image</th>
+                                    <th class="text-center">Title</th>
+                                    <th>Description</th>
+                                    <th class="text-center">Type</th>
+                                    <th class="text-center">Id</th>
+                                    <!-- <th class="text-start">Description</th> -->
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-bannerData let-i="rowIndex">
+                                <tr>
+                                    <td class="text-center">{{ i + 1 }}</td>
+                                    <td class="text-center">
+                                        <img [src]="bannerData?.bannerImage" class="img-fluid"
+                                            width="50" alt="bannerData?.image">
+                                        </td>
+                                    <td class="text-center">{{bannerData?.title}}</td>
+                                    <td><p [innerHTML]="bannerData?.description" ></p></td>
+                                    <td class="text-center">{{bannerData?.type}}</td>
+                                    <td class="text-center">{{bannerData?.id}}</td>
+                                    <td class="text-center">
+                                        <i class="mx-1 pi pi-pencil cursor-pointer" data-bs-toggle="collapse"
+                                            data-bs-target="#updatebanneraccordion"
+                                            (click)="patchValue(bannerData)"></i>
+                                        <i class="mx-1 pi pi-trash cursor-pointer" data-bs-toggle="modal"
+                                            data-bs-target="#categorydeletemodal"
+                                            (click)="banner_id = bannerData.id"></i>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Categoruy  delete model-->
+<div class="modal delete-modal fade" id="categorydeletemodal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="m-0">Delete Category</h5>
+                <button type="button" class="btn-close p-2 closebtnofArtist" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h5 class="fw-bold m-0">
+                    Are you sure you want to Delete category?
+                </h5>
+            </div>
+            <div class="modal-footer text-end border-0">
+                <button class="btn btn-secondary me-3" data-bs-dismiss="modal">No</button>
+                <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="deleteBanner()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

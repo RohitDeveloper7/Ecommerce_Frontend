@@ -1,0 +1,159 @@
+<section class="block product__details">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="card border-0 img__main mb-4">
+                    <div class="card-body">
+                        <img [src]="selectedImage" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="slider">
+                    <p-carousel [value]="productDetail.productImages" [numVisible]="5" [numScroll]="1" [circular]="true"
+                        [responsiveOptions]="responsiveOptions">
+                        <ng-template let-imageGallery pTemplate="item">
+                            <div class="slider__images" (click)="selectImage(imageGallery)">
+                                <img [src]="imageGallery" class="img-fluid">
+                            </div>
+                        </ng-template>
+                    </p-carousel>
+                </div>
+            </div>
+            <div class="col-6 side__details">
+                <div class="about border-bottom mb-3 pb-3 border-dark">
+                    <!-- <img src="assets/images/brand_001.png" width="100" alt="" class="img-fluid mb-2"> -->
+
+                    <p class="availability" *ngIf="productDetail.avaliability == 'yes'">
+                        Availability: <span>In Stock</span>
+                    </p>
+
+                    <h4 class="product__name">{{productDetail.productName}}</h4>
+
+                    <div class="ratings">
+                        <p-rating [(ngModel)]="value" class="me-3" [cancel]="false" [readonly]="true"></p-rating> <a
+                            href="javascript:void(0)">Read all 3k reviews</a>
+
+                        <a href="javascript:void(0)" routerLink="/product/wish-list" class="float-end icon">Add to wish list <i
+                                class="pi pi-heart-fill text-danger ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="features">
+                    <!-- <ul> -->
+                        <!-- <li> -->
+                            <p [innerHTML]="productDetail.productDescription" >
+                                <!-- 4.5 inch HD Touch Screen (1280 x 720) -->
+                            </p>
+                        <!-- </li> -->
+                        <!-- <li>
+                            <p>
+                                Android 4.4 KitKat OS
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                1.4 GHz Quad Core<sup>TM</sup> Processor
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                20 MP front and 28 megapixel CMOS rear camera
+                            </p>
+                        </li> -->
+                    <!-- </ul> -->
+
+                    <!-- <p class="details">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quas
+                        eveniet ipsam
+                        officia quia asperiores doloribus perferendis. Enim, dolores quidem!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id eius cum quas minus unde error sint
+                        rem. Possimus, voluptates totam?
+                    </p> -->
+                </div>
+                <div class="pricing">
+                    <h4>{{productDetail.ProductPrice}} <span>{{productDetail.discountPrice}}</span></h4>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-primary me-3">
+                        Buy now
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="pi pi-shopping-cart me-2"></i> Add to cart
+                    </button>
+                </div>
+                <!-- <div class="tags my-3">
+                    <p>Tags: <span>Fast, Gaming, Sound</span></p>
+                </div> -->
+            </div>
+            <div class="col-12">
+                <div class="my__tabs my-3">
+                    <p-tabView>
+                        <p-tabPanel header="Description ">
+                            <p>
+                                This product is engineered for extended wear, featuring plush ear cushions and an
+                                adjustable headband for a customized fit. Enjoy hours of comfort during gaming
+                                marathons,
+                                work calls, or music sessions.
+                                Immerse yourself in your audio world without distractions. The headset's noise-isolating
+                                feature ensures that ambient sounds are kept at bay, allowing you to focus on what
+                                matters.
+                            </p>
+                        </p-tabPanel>
+                        <p-tabPanel header="Specification">
+                            <p>
+                                Experience crystal-clear audio with our advanced sound technology. From deep bass to
+                                crisp
+                                highs, every note is delivered with precision, making it ideal for music enthusiasts and
+                                gamers seeking an immersive audio experience.
+                            </p>
+                        </p-tabPanel>
+                        <p-tabPanel header="Reviews">
+                            <div class="reviews__section">
+                                <div class="row">
+                                    <div class="col-4 border-end my-auto">
+                                        <div class="ms-3">
+                                            <h4>Total Reviews</h4>
+                                            <h2>10.4k</h2>
+                                            <p class="text-muted" p>Average rating on this year</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 border-end my-auto">
+                                        <div class="ms-3">
+                                            <h4>Average Ratings</h4>
+                                            <h2>4.0 <p-rating [(ngModel)]="value" [cancel]="false" [readonly]="true"
+                                                    class="ms-2"></p-rating></h2>
+                                            <p class="text-muted">Average rating on this year</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="ms-3 rating__bar">
+                                            <ul>
+                                                <li>
+                                                    <div class="progress__data">
+                                                        <span>5</span>
+                                                        <div class="progress-bar" style="width: 25%"></div>
+                                                        <span>500</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+
+                                                </li>
+                                                <li>
+
+                                                </li>
+                                                <li>
+
+                                                </li>
+                                                <li>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 border-top"></div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

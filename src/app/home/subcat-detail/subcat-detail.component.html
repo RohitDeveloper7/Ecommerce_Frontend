@@ -1,0 +1,75 @@
+<section class="search block">
+    <div class="container">
+        <div class="row">  
+            <div class="col-12 mb-3">
+                <h4 class="title-main">Sub-Category List</h4>
+                <div class="title-main-dash"></div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-5">
+                            <div class="card product__filter">
+                                <div class="card-body">
+                                    <p>Showing 1 - 20 of 30 results</p>
+
+                                    <div class="float-end">
+                                        <p>Sort by</p>
+                                        <select class="form-select">
+                                            <option selected>Default</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 product__items">
+                        <div class="row">
+                            <ng-container *ngFor="let category of categories">
+                                <!-- [routerLink]="['/product/product-details']" -->
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card border-0" (click)="navigateToSubcat(category)">
+                                        <!-- Use [routerLink] binding with the category's categoryId as a route parameter -->
+                    
+                                        <div class="card-header bg-white p-3">
+                                            <img [src]="category.image" class="img-fluid">
+                                            <!-- <i class="pi pi-shopping-cart"></i> -->
+                                            <!-- Optionally include other icons/buttons here -->
+                                        </div>
+                    
+                                        <div class="card-body">
+                                            <h5>{{category.subCategoryName}}</h5>
+                                            <h6 class="text-primary" [innerHTML]="category.subDisc"></h6>
+                                            <!-- Use [innerHTML] to render HTML content from category.catDesc -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- pagination -->
+            <div class="col-12 my-5">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#"><i class="pi pi-chevron-left"></i></a></li>
+                        <div class="page1">
+                            <li class="page-item active"><a class="page-link1  text-decoration-none" href="#">1</a></li>
+                        </div>
+                        <div class="page1">
+                            <li class="page-item"><a class="page-link1 text-decoration-none icon" href="#">2</a></li>
+                        </div>
+                        <li class="page-item"><a class="page-link" href="#"><i class="pi pi-chevron-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,55 @@
+<div class="basic-details">
+    <div class="mb-3">
+        <h4 class="title-main">Basic Details</h4>
+        <div class="title-main-dash"></div>
+    </div> 
+
+    <div class="row">
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" placeholder="Enter title">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input type="number" class="form-control" placeholder="Enter price">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Dis. Price</label>
+                <input type="number" class="form-control" placeholder="Enter discounted price">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Quantity</label>
+                <input type="number" class="form-control" placeholder="Enter quantity">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select class="form-select">
+                    <option value="">Select Category</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Sub-category</label>
+                <select class="form-select">
+                    <option value="">Select Sub-category</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <p-editor formControlName="productDescription" [style]="{ height: '150px' }"></p-editor>
+            </div>
+        </div> 
+    </div>
+</div>

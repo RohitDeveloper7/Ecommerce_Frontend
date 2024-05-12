@@ -1,0 +1,90 @@
+<section class="users admin-style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="m-0">Users</h4>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card border-0 shadow my-4">
+                    <div class="card-body" *ngIf="users.length > 0">
+                        <p-table #dt4 [value]="users" [rows]="5" [paginator]="users.length > 5"
+                            [globalFilterFields]="['users','name']" styleClass="p-datatable-gridlines"
+                            [tableStyle]="{'min-width': '50rem'}">
+                            <ng-template pTemplate="caption">
+
+                                <div class="flex">
+                                    <span class="p-input-icon-left ml-auto border rounded">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text"
+                                            (input)="dt4.filterGlobal($any($event.target).value, 'contains')"
+                                            placeholder="Search keyword" />
+                                    </span>
+
+                                    <!-- <button class="btn btn-primary float-end  " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#addusersaccordion">
+                                        <i class="pi pi-plus me-1"> </i>
+                                        Add Users
+                                    </button> -->
+                                </div>
+                            </ng-template>
+
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="text-center">Sr No</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Mobile No</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-user let-i="rowIndex">
+                                <tr>
+                                    <td class="text-center">{{ i + 1 }}</td>
+
+                                    <td class="text-center">{{user?.username}}</td>
+                                    <td class="text-center">{{user?.email}}</td>
+                                    <td class="text-center">{{user?.mobile_no}}</td>
+                                    <td class="text-center">
+                                        <!-- <i class="mx-1 pi pi-pencil cursor-pointer" data-bs-toggle="collapse"
+                                            data-bs-target="#editusersaccordion"></i> -->
+                                        <i class="mx-1 pi pi-trash cursor-pointer" data-bs-toggle="modal"
+                                            data-bs-target="#usersdeletemodal" (click)="patchValue(user.id)"></i>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
+                    <div class="card-body text-center" *ngIf="users.length < 1">
+                        <h4 class="my-4">No Data!!!</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="usersdeletemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Delete User</h5>
+                <button type="button" class="btn-close p-2 closebtnofArtist" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h5>
+                    <b>Are you sure you want to Delete User?</b>
+                </h5>
+            </div>
+            <div class="modal-footer text-end">
+                <button class="btn btn-success" data-bs-dismiss="modal">No</button>
+                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="deleteuser()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <p-toast position="top-right"></p-toast> -->

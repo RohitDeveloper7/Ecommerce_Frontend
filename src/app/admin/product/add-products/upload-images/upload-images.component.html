@@ -1,0 +1,31 @@
+<div class="upload-image">
+    <div class="mb-3">
+        <h4 class="title-main">Upload Image</h4>
+        <div class="title-main-dash"></div>
+    </div>
+
+    <div class="preview-image">
+        <div class="me-3 mb-3">
+            <label for="image-upload">
+                <div class="add-image-btn">
+                    <i class="pi pi-plus"></i>
+                </div>
+            </label>
+            <input type="file" id="image-upload" class="d-none" multiple (change)="handleFileInput($event)">
+        </div>
+
+        <div class="me-3 mb-3 img-preview" *ngIf="imageSrcList.length < 1">
+            <img src="assets/images/placeholder-image1.png" class="img-fluid" width="150" height="150">
+        </div>
+
+        <ng-container *ngFor="let src of imageSrcList; let i = index">
+            <div class="image-view">
+                <p-image [src]="src" alt="Image" width="150" height="150" (mouseover)="toggleDeleteIcon(i)"
+                    (mouseout)="toggleDeleteIcon(i)"></p-image>
+                <!-- <button class="delete-btn btn" (click)="deleteImage(i)">
+                    <i class="pi pi-trash"></i>
+                </button> -->
+            </div>
+        </ng-container>
+    </div> 
+</div>

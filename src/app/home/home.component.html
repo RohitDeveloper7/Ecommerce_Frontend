@@ -1,0 +1,237 @@
+<!-- banner -->
+<section class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="hopeEsellerHomepageSlider" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <ng-container *ngFor="let data of bannerDatas; let isFirst = first">
+                          <div class="carousel-item" [class.active]="isFirst">
+                            <div class="row align-items-center">
+                              <!-- Content Column (Left Side) -->
+                              <div class="col-md-6">
+                                <div class="carousel-caption text-light">
+                                  <h1 class="mb-3 text-dark">{{ data.title }}</h1>
+                                  <p class="mb-4 text-dark" [innerHTML]="data.description"></p>
+                                  <button class="btn btn-banner" [routerLink]="['/product/product-details']">Buy now</button>
+                                </div>
+                              </div>
+                      
+                              <!-- Image Column (Right Side) -->
+                              <div class="col-md-6">
+                                <img [src]="data.bannerImage" class="d-block w-100" alt="Banner Image">
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </div>
+                      
+                    <button class="carousel-control-prev" type="button" (click)="sliderPrev()"
+                        data-bs-target="#hopeEsellerHomepageSlider" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" (click)="sliderNext()"
+                        data-bs-target="#hopeEsellerHomepageSlider" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<app-header *ngIf="cardData?.length > 0" [cartDataofParent]="cardData"></app-header>
+<!-- top-catogeries -->
+
+<!-- <section class="top-catogeries block">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h1 class="text-center main-heading">Top Catogeries</h1>
+            </div>
+            <div class="col-12">
+                <div class="nav_header">
+                    <p [routerLink]="['subcat-details']">View More <i class="pi pi-arrow-right ms-2"></i></p>
+                </div>
+            </div>
+            <ng-container *ngFor="let item of product_categories.slice(0,4)">
+                <div class="col-12 col-sm-4 col-md-3 col-lg-3 ">
+                    <div class="cat__card border-0">
+                        <img [src]="item.catImage" class="img-fluid">
+                        <div class="text-center">
+                            <p class="m-0 p-0">{{item.categoryName | titlecase}}</p>
+                            <small [innerHTML]="item.catDesc" class="fw-bold"></small>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</section> -->
+<section class="top-catogeries mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center main-heading">Top Catogeries</h1>
+            </div>
+            <!-- <div class="col-12">
+            <div class="nav_header">
+                <p [routerLink]="['subcat-details']">View More <i class="pi pi-arrow-right ms-2"></i></p>
+            </div>
+        </div> -->
+            <div class="col-12">
+                <div class="card">
+                    <p-carousel [value]="product_categories" [numVisible]="3" [numScroll]="1"
+                        [responsiveOptions]="responsiveOptions">
+                        <ng-template let-product pTemplate="item">
+                            <div class="product-item">
+                                <div class="product-item-content">
+                                    <div class="mb-3">
+                                        <img [src]="product.catImage" [alt]="product.categoryName"
+                                            class="product-image cursor-pointer" (click)="navigateToSub(product)" />
+                                    </div>
+                                    <div>
+                                        <h4 class="mb-1">{{product.categoryName | titlecase}}</h4>
+                                        <small [innerHTML]="product.catDesc" class="fw-bold"></small>
+                                        <!-- <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag> -->
+                                        <!-- <div class="mt-5 flex align-items-center justify-content-center gap-2"> -->
+                                        <!-- <p-button icon="pi pi-search" [rounded]="true" /> -->
+                                        <!-- <p-button icon="pi pi-star-fill" [rounded]="true" severity="secondary" /> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                        </ng-template>
+                    </p-carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- top-catogeries -->
+<section class="our__recommendation  block">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h1 class="text-center main-heading">Fresh Deals</h1>
+            </div>
+
+            <div class="col-12">
+                <div class="nav_header">
+                    <p [routerLink]="['/product/product-listing']">View More <i class="pi pi-arrow-right ms-2"></i></p>
+                </div>
+            </div>
+
+            <ng-container *ngFor="let products of freshDeal.slice(0, 6)">
+                <div class="col-sm-6 col-md-6 col-lg-2" (click)="goToDetails(products)">
+                    <div class="card border-0">
+                        <div class="card-header bg-white p-3">
+                            <img [src]="products?.productImages[0]" class="img-fluid cursor-pointer"
+                                (click)="goToDetails(products)">
+                            <i class="pi pi-shopping-cart" (click)="addToCart(products)"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="white-space">{{products?.productName}}</h5>
+                            <h4>{{products.ProductPrice | currency : "INR"}}</h4>
+                            <span>{{products.discountPrice | currency : "INR"}}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</section>
+
+
+<!-- top-catogeries -->
+<section class="our__recommendation fresh__deals block">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-12">
+                <h1 class="text-center main-heading">Our Recommendation</h1>
+            </div>
+            <div class="col-12">
+                <div class="nav_header">
+                    <h4>For Technology</h4>
+                    <p [routerLink]="['/product/product-listing']">View More<i class="pi pi-arrow-right ms-2"></i></p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-2">
+                <div class="card border-0">
+                    <div class="card-header bg-white p-3">
+                        <img src="assets/images/products/coffee.png" class="img-fluid">
+                        <i class="pi pi-shopping-cart"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5>Sony camera</h5>
+                        <h4>₹99.200 <span>₹100.20</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-2">
+                <div class="card border-0">
+                    <div class="card-header bg-white p-3">
+                        <img src="assets/images/products/cycle.png" class="img-fluid">
+                        <i class="pi pi-shopping-cart"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5>Sony camera</h5>
+                        <h4>₹99.200 <span>₹100.20</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-2">
+                <div class="card border-0">
+                    <div class="card-header bg-white p-3">
+                        <img src="assets/images/products/headphone__01.png" class="img-fluid">
+                        <i class="pi pi-shopping-cart"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5>Sony camera</h5>
+                        <h4>₹99.200 <span>₹100.20</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-2">
+                <div class="card border-0">
+                    <div class="card-header bg-white p-3">
+                        <img src="assets/images/products/monitor.png" class="img-fluid">
+                        <i class="pi pi-shopping-cart"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5>Sony camera</h5>
+                        <h4>₹99.200 <span>₹100.20</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-2">
+                <div class="card border-0">
+                    <div class="card-header bg-white p-3">
+                        <img src="assets/images/products/camera.png" class="img-fluid">
+                        <i class="pi pi-shopping-cart"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5>Sony camera</h5>
+                        <h4>₹99.200 <span>₹100.20</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-2">
+                <div class="card border-0">
+                    <div class="card-header bg-white p-3">
+                        <img src="assets/images/products/hoodie.png" class="img-fluid">
+                        <i class="pi pi-shopping-cart"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5>Sony camera</h5>
+                        <h4>₹99.200 <span>₹100.20</span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,21 @@
+<div class="dimensions_size">
+    <div class="mb-3">
+        <h4 class="title-main">Custom Fields</h4>
+        <div class="title-main-dash"></div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Title <i class="pi pi-info-circle ms-1 tooltip-cust" data-title="What you want to called this feild?"></i></label> 
+                <input type="text" class="form-control" formControlName="input1"
+                    placeholder="Enter title">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <p-editor [(ngModel)]="text" [style]="{ height: '150px' }"></p-editor>
+            </div>
+        </div> 
+    </div>
+</div>
